@@ -11,6 +11,12 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', 'HomeController@index');
+
+Route::get('/types', 'TypesController@index');
+
+Route::get('/types/create', 'TypesController@create');
+
+Route::post('/types', 'TypesController@store');
+
+Route::get('/types/{type}', 'TypesController@show');
