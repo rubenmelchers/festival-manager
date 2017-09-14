@@ -20,3 +20,9 @@ Route::get('/types/create', 'TypesController@create');
 Route::post('/types', 'TypesController@store');
 
 Route::get('/types/{type}', 'TypesController@show');
+
+
+Route::get('/festivals', 'FestivalsController@index');
+Route::get('/festivals/create', 'FestivalsController@create');
+Route::post('/festivals', 'FestivalsController@store');
+Route::get('/festivals/{festival}', 'FestivalsController@show');

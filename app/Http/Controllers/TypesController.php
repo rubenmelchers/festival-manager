@@ -11,7 +11,7 @@ class TypesController extends Controller
 
     public function index() {
 
-        $types = Type::all();
+        $types = Type::latest()->get();
 
         $name = 'test';
 
@@ -38,7 +38,7 @@ class TypesController extends Controller
             'description' => 'required'
         ]);
 
-        Post::create([
+        Type::create([
             'title' => request('title'),
             'description' => request('description')
         ]);
