@@ -16,9 +16,10 @@ class CreateFestivalsTable extends Migration
         Schema::create('festivals', function (Blueprint $table) {
             $table->increments('id');
 
+            $table->integer('user_id');
             $table->string('title');
-            $table->text('body');
-            $table->text('location');
+            $table->text('description');
+            $table->string('location');
 
             $table->timestamps();
         });

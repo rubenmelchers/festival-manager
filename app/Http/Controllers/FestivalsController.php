@@ -9,7 +9,10 @@ Use App\Festival;
 class FestivalsController extends Controller
 {
     public function index() {
-        return view('festivals.index');
+
+        $festivals = Festival::latest()->get();
+
+        return view('festivals.index', compact('festivals'));
     }
 
     public function show(Festival $festival) {

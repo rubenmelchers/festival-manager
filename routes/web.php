@@ -11,18 +11,24 @@
 |
 */
 
-Route::get('/', 'HomeController@index');
+// Home controller
+Route::get('/', 'HomeController@welcome');
 
+// Types controller
 Route::get('/types', 'TypesController@index');
-
 Route::get('/types/create', 'TypesController@create');
-
 Route::post('/types', 'TypesController@store');
-
 Route::get('/types/{type}', 'TypesController@show');
 
-
+// Festivals controller
 Route::get('/festivals', 'FestivalsController@index');
 Route::get('/festivals/create', 'FestivalsController@create');
 Route::post('/festivals', 'FestivalsController@store');
 Route::get('/festivals/{festival}', 'FestivalsController@show');
+
+// Comments controller
+Route::post('/festivals/{festival}/comments', 'CommentsController@store');
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');

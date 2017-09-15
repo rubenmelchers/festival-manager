@@ -1,7 +1,7 @@
 <div class="blog-post">
 
     <h2 class="blog-post-title">
-        <a href="/festivals/{{ $festival->id }}">
+        <a href="festivals/{{ $festival->id }}">
             {{ $festival->title }}
         </a>
     </h2>

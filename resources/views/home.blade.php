@@ -1,26 +1,23 @@
-@extends ('layouts.master')
+@extends('layouts.app')
 
+@section('content')
+<div class="container">
+    <div class="row">
+        <div class="col-md-8 col-md-offset-2">
+            <div class="panel panel-default">
+                <div class="panel-heading">Dashboard</div>
 
-@section ('content')
+                <div class="panel-body">
+                    @if (session('status'))
+                        <div class="alert alert-success">
+                            {{ session('status') }}
+                        </div>
+                    @endif
 
-    <div class="col-sm-8 blog-main">
-
-        @foreach($types as $type)
-
-            @include('types.type')
-
-        @endforeach
-
+                    You are logged in!
+                </div>
+            </div>
+        </div>
     </div>
-
-    <div class="col-sm-8 blog-main">
-
-        @foreach($festivals as $festival)
-
-            @include('festivals.festival')
-
-        @endforeach
-
-    </div>
-
+</div>
 @endsection

@@ -23,7 +23,7 @@
 
             <div class="form-group">
                 <label for="location">Festival address: </label>
-                <textarea name="location" id="location" rows="8" cols="80" class="form-control"></textarea>
+                <input type="text" class="form-control" id="location" name="location" placeholder="voorbeeldstraat 10, stad" >
             </div>
 
             <button type="submit" class="btn btn-primary">Submit</button>
