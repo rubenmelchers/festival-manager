@@ -11,9 +11,11 @@ class CommentsController extends Controller
 
     public function store(Festival $festival) {
 
-        $this->validate(request(), ['body', 'required|min:2']);
+        $this->validate(request(), [
+            'body' => 'required'
+        ]);
 
-        $festival->addComment(request('body'));
+        $festival->addComment(request('body'), \Auth::user()->id);
 
         return back();
 

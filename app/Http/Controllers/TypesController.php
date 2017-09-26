@@ -13,8 +13,6 @@ class TypesController extends Controller
 
         $types = Type::latest()->get();
 
-        $name = 'test';
-
         return view('types.index', compact('types', 'name'));
 
     }

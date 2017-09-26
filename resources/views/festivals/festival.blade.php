@@ -6,7 +6,10 @@
         </a>
     </h2>
 
-    <p class="blog-post-meta">{{ $festival->created_at->toFormattedDateString() }}</p>
+    <p class="blog-post-meta">
+        {{ $festival->user->name }} on
+        {{ $festival->created_at->toFormattedDateString() }}
+    </p>
 
     <p>{{ $festival->description }}</p>
 

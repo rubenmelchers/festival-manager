@@ -2,6 +2,10 @@
 
 namespace App;
 
+Use App\Auth;
+
+use Carbon\Carbon;
+
 class Festival extends Model
 {
 
@@ -16,8 +20,27 @@ class Festival extends Model
     }
 
 
-    public function addComment($body) {
-        $this->comments()->create(compact('body'));
+    public function addComment($body, $user_id) {
+        $this->comments()->create(compact([
+            'body',
+            'user_id'
+        ]));
+    }
+
+    public function scopeFilter($query, $filters) {
+
+        if(isset($filters['month'])) {
+            if($month = $filters['month']) {
+                $query->whereMonth('created_at', Carbon::parse($month)->month);
+            }
+        }
+
+        if(isset($filters['year'])) {
+            if($year = $filters['year']) {
+                $query->whereYear('created_at', $year);
+            }
+        }
+
     }
 
 }

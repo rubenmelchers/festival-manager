@@ -11,24 +11,31 @@
 |
 */
 
-// Home controller
+// Home
 Route::get('/', 'HomeController@welcome');
 
-// Types controller
+// Types
 Route::get('/types', 'TypesController@index');
 Route::get('/types/create', 'TypesController@create');
 Route::post('/types', 'TypesController@store');
 Route::get('/types/{type}', 'TypesController@show');
 
-// Festivals controller
+// Festivals
 Route::get('/festivals', 'FestivalsController@index');
 Route::get('/festivals/create', 'FestivalsController@create');
 Route::post('/festivals', 'FestivalsController@store');
 Route::get('/festivals/{festival}', 'FestivalsController@show');
 
-// Comments controller
+// Comments
 Route::post('/festivals/{festival}/comments', 'CommentsController@store');
 
-Auth::routes();
+// Auth::routes();
+
+//User related
+Route::get('/register', 'RegistrationController@create');
+Route::post('/register', 'RegistrationController@store');
+Route::get('/login', 'SessionController@create')->name('login');
+Route::post('/login', 'SessionController@store');
+Route::get('/logout', 'SessionController@destroy');
 
 Route::get('/home', 'HomeController@index')->name('home');

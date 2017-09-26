@@ -5,6 +5,8 @@ namespace App;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
+use Carbon\Carbon;
+
 class User extends Authenticatable
 {
     use Notifiable;
@@ -27,8 +29,13 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
-    public function posts() {
+    public function festivals() {
 
         return $this->hasMany(Festival::class);
+    }
+
+    public function publish(Festival $festival) {
+
+        $this->festivals()->save($festival);
     }
 }
