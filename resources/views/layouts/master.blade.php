@@ -22,9 +22,14 @@
 
             <div class="container">
 
-                @yield('content')
+                <div class="row">
+                    
+                    @yield('content')
 
-                {{-- @include('layouts.sidebar') --}}
+                    @include('layouts.sidebar')
+
+                </div>
+
             </div>
 
 

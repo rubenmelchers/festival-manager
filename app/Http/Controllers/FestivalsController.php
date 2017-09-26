@@ -21,13 +21,7 @@ class FestivalsController extends Controller
         ->filter(request(['month', 'year']))
         ->get();
 
-        $archives = Festival::selectRaw('year(created_at) year, monthname(created_at) month, count(*) published')
-            ->groupBy('year', 'month')
-            ->orderByRaw('min(created_at) desc')
-            ->get()
-            ->toArray();
-
-        return view('festivals.index', compact('festivals', 'archives'));
+        return view('festivals.index', compact('festivals'));
     }
 
     public function show(Festival $festival) {

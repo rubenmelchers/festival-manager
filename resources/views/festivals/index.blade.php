@@ -2,39 +2,26 @@
 
 
 @section ('content')
-<br>
-    @if(Auth::check())
-        <a href="/festivals/create">Create new festival</a>
 
-    @endif
-<br><br>
-    <ul>
+    <div class="col-md-8">
+        <br>
+        @if(Auth::check())
+            <a href="/festivals/create">Create new festival</a>
 
-        @foreach ($festivals as $festival)
+        @endif
+        <br><br>
+        <ul>
 
-            <li>
-                <a href="/festivals/{{ $festival->id }}">
-                    {{ $festival->title }}
-                </a>
-            </li>
-
-        @endforeach
-    </ul>
-
-    <div class="sidebar-module">
-
-        <h4>Archives</h4>
-
-        <ul class="list-unstyled">
-            @foreach($archives as $stats)
+            @foreach ($festivals as $festival)
 
                 <li>
-                    <a href="/festivals/?month={{$stats['month']}}&year={{$stats['year']}}"> {{ $stats['month'] . ' ' . $stats['year'] }}</a>
+                    <a href="/festivals/{{ $festival->id }}">
+                        {{ $festival->title }}
+                    </a>
                 </li>
 
             @endforeach
         </ul>
-
     </div>
 
 @endsection
