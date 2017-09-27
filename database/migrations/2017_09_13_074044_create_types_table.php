@@ -16,11 +16,18 @@ class CreateTypesTable extends Migration
         Schema::create('types', function (Blueprint $table) {
             $table->increments('id');
 
-            $table->string('title');
-            $table->text('description');
-            $table->boolean('active')->default(false);
+            $table->string('name')->unique();
+            $table->boolean('active')->default(true);
 
             $table->timestamps();
+        });
+
+        Schema::create('festival_type', function (Blueprint $table) {
+
+            $table->integer('festival_id');
+            $table->integer('type_id');
+
+            $table->primary(['festival_id', 'type_id']);
         });
     }
 
@@ -32,5 +39,8 @@ class CreateTypesTable extends Migration
     public function down()
     {
         Schema::dropIfExists('types');
+
+        Schema::dropIfExists('festival_type');
+
     }
 }

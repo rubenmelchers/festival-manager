@@ -13,4 +13,14 @@ class Type extends Model
     public function scopeInactive($query) {
         return $query->where('active', 0);
     }
+
+    public function festivals() {
+
+        return $this->belongsToMany(Festival::class);
+    }
+
+    public function getRouteKeyName() {
+
+        return 'name';
+    }
 }

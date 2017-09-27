@@ -50,6 +50,8 @@ class FestivalsController extends Controller
             new Festival(request(['title', 'description', 'location']))
         );
 
+        session()->flash('message', 'You have created festival: "' . request('title') . '"');
+
         return redirect('/festivals');
     }
 }

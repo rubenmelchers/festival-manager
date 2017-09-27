@@ -13,3 +13,19 @@
     </ul>
 
 </div>
+
+<div class="sidebar-module">
+
+    <h4>Types</h4>
+
+    <ul class="list-unstyled">
+        @foreach($types as $type)
+
+            <li>
+                <a href="/festivals/types/{{$type}}">{{$type}}</a>
+            </li>
+
+        @endforeach
+    </ul>
+
+</div>

@@ -10,6 +10,23 @@
             {{ $festival->created_at->toFormattedDateString() }}
         </p>
 
+        @if(count($festival->types))
+
+            <ul>
+                @foreach($fetival->types as $type)
+
+                    <li>
+                        <a href="/festivals/types/{{ $type->name }}">
+                            {{ $type->name }}
+                        </a>
+                    </li>
+
+                @endforeach
+
+            </ul>
+
+        @endif
+
         <p>
             {{ $festival->description }}
         </p>

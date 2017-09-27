@@ -20,10 +20,18 @@
         <div id="app">
             @include('layouts.nav')
 
+            @if($flash = session('message'))
+
+                <div class="alert alert-success" role="alert">
+                    {{ $flash }}
+                </div>
+
+            @endif
+
             <div class="container">
 
                 <div class="row">
-                    
+
                     @yield('content')
 
                     @include('layouts.sidebar')

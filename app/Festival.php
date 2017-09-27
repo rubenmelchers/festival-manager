@@ -52,4 +52,9 @@ class Festival extends Model
             ->toArray();
     }
 
+    public function types() {
+
+        return $this->belongsToMany(Type::class);
+    }
+
 }

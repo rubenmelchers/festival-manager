@@ -15,7 +15,15 @@ class AppServiceProvider extends ServiceProvider
     {
         view()->composer('layouts.sidebar', function($view) {
 
-            $view->with('archives', \App\Festival::archives());
+            $archives = \App\Festival::archives();
+
+            $types = \App\Type::has('festivals')->pluck('name');
+
+            $view->with(compact('archives', 'types'));
+
+            // $view->with('archives', \App\Festival::archives());
+            //
+            // $view->with('types', \App\Type::has('festivals')->pluck('name'));
         });
     }
 

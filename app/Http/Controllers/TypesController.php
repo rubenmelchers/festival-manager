@@ -9,11 +9,13 @@ use App\Type;
 class TypesController extends Controller
 {
 
-    public function index() {
+    public function index(Type $type) {
 
-        $types = Type::latest()->get();
+        // $types = Type::latest()->get();
 
-        return view('types.index', compact('types', 'name'));
+        $festivals = $type->festivals;
+
+        return view('festivals.index', compact('festivals'));
 
     }
 
