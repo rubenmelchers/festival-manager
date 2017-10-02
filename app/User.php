@@ -38,4 +38,14 @@ class User extends Authenticatable
 
         $this->festivals()->save($festival);
     }
+
+    public function isAdmin() {
+
+        if($this->role == 1) {
+            return true;
+        } else {
+            return false;
+        }
+        // return $this->role;
+    }
 }

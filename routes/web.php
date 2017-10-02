@@ -10,6 +10,9 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
+// Route::get('protected', ['middleware' => ['auth', 'admin'], function() {
+//     return "this page requires that you be logged in and an Admin";
+// }]);
 
 // Home
 Route::get('/', 'HomeController@welcome');
@@ -41,3 +44,6 @@ Route::post('/login', 'SessionController@store');
 Route::get('/logout', 'SessionController@destroy');
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+//admin related
+Route::get('/admin', 'AdminController@index');

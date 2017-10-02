@@ -1,50 +1,32 @@
-<nav class="navbar navbar-default navbar-static-top">
+<nav class="navigation">
     <div class="container">
-        <div class="navbar-header">
 
-            <!-- Collapsed Hamburger -->
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#app-navbar-collapse">
-                <span class="sr-only">Toggle Navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
+        <ul>
+            <li>
+                <a class="navbar-brand" href="{{ url('/') }}">
+                    Festival Manager
+                </a>
+            </li>
 
-            <!-- Branding Image -->
-            <a class="navbar-brand" href="{{ url('/') }}">
-                {{ config('app.name', 'Festival Manager') }}
-            </a>
-        </div>
+            <li>
+                <a href="/festivals">Festivals</a>
+            </li>
 
-        <div class="collapse navbar-collapse" id="app-navbar-collapse">
-            <!-- Left Side Of Navbar -->
-            <ul class="nav navbar-nav">
-                &nbsp;
-            </ul>
-
-            <!-- Right Side Of Navbar -->
-            <ul class="nav navbar-nav navbar-right">
-                <!-- Authentication Links -->
+            @guest
+                <li><a href="/login">Login</a></li>
+                <li><a href="/register">Register</a></li>
+            @else
                 <li>
-                    <a href="/festivals">Festivals</a>
+                    <a href="#" role="button" aria-expanded="false">
+                    {{ Auth::user()->name }}
+                    </a>
                 </li>
-
-                @guest
-                    <li><a href="/login">Login</a></li>
-                    <li><a href="/register">Register</a></li>
-                @else
-                    <li>
-                        <a href="#" role="button" aria-expanded="false">
-                        {{ Auth::user()->name }}
-                        </a>
-                    </li>
-                    <li>
-                        <a href="/logout">
-                            Logout
-                        </a>
-                    </li>
-                @endguest
-            </ul>
-        </div>
+                <li>
+                    <a href="/logout">
+                        Logout
+                    </a>
+                </li>
+            @endguest
+        </ul>
     </div>
 </nav>
