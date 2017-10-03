@@ -12,7 +12,9 @@
 
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
         {{-- <link href="/css/app.css" rel="stylesheet"> --}}
-        <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+        {{-- <link href="{{ asset('css/app.css') }}" rel="stylesheet"> --}}
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,600,700,800|Raleway:400,500,700,800,900" rel="stylesheet">
+        <link href="{{ asset('css/style.css') }}" rel="stylesheet">
 
     </head>
     <body>
@@ -28,22 +30,26 @@
 
             @endif
 
-            <div class="container">
+            <main class="main">
+                <div class="grid-12 container">
 
-                <div class="row">
+                    {{-- <div class="container"> --}}
 
-                    @yield('content')
+                        @yield('content')
 
-                    @include('layouts.sidebar')
+                        @include('layouts.sidebar')
+
+                    {{-- </div> --}}
 
                 </div>
+            </main>
 
-            </div>
 
 
         </div>
 
         @include('layouts.footer')
 
+        <script type="text/javascript" src="{{ asset('js/main.min.js') }}"></script>
     </body>
 </html>

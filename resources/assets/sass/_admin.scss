@@ -1,0 +1,103 @@
+.admin {
+
+    &__highlightedname {
+        color: darken($primary, 10%);
+        font-weight: 800;
+    }
+
+    &__users-section {
+        padding: 2rem 0;
+        position: relative;
+    }
+
+    &__userstable {
+        transition: 250ms $easeInOutQuart;
+        position: relative;
+        width: 100%;
+        opacity: 0;
+        display: none;
+
+        &.active {
+            display: table;
+            opacity: 1;
+        }
+
+    }
+
+    &__showbutton {
+        position: relative;
+        width: 2rem;
+        height: 2rem;
+        border: none;
+        pointer-events: all;
+        cursor: pointer;
+        background: transparent;
+
+        &:hover {
+            &:before,
+            &:after {
+                top: 75%;
+            }
+        }
+
+        &:before,
+		&:after {
+			content: '';
+			transition: 500ms $easeInOutQuart;
+			position: absolute;
+			left: 25%;
+			width: 50%;
+			top: 50%;
+			height: .1rem;
+			background: $black;
+		}
+
+		&:before {
+			transform: rotate(-45deg) translate(45%, 0);
+		}
+
+		&:after {
+			transform: rotate(45deg) translate(-45%, 0%);
+		}
+
+        span {
+            position: absolute;
+            right: 0;
+            top: 0;
+
+            &:after {
+                content: 'Show users table';
+                width: 10rem;
+                position: absolute;
+            }
+        }
+
+        &.hideTable {
+            span {
+                &:after {
+                    content: 'Hide users table';
+                }
+            }
+
+            &:before,
+            &:after {
+                top: 25%;
+            }
+
+            &:hover {
+                &:before,
+                &:after {
+                    top: 50%;
+                }
+            }
+
+            &:before {
+                transform: rotate(45deg) translate(45%, 0);
+            }
+
+            &:after {
+                transform: rotate(-45deg) translate(-45%, 0%);
+            }
+        }
+    }
+}

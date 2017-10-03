@@ -18,7 +18,7 @@ html, body {
 
 body {
 	position: relative;
-	background: darken($light, 2%);
+	background: $lightgray;
 	box-sizing: border-box;
 	font-family: $basefont;
 	margin: 0;
@@ -31,6 +31,11 @@ div {
 .container {
 	max-width: 1200px;
 	margin: 0 auto;
+}
+
+main {
+    padding-top: 10rem;
+    padding-bottom: 15rem;
 }
 
 @import 'footer',

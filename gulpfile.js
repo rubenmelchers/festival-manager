@@ -39,7 +39,7 @@ gulp.task("sass", function() {
 			sourceMap: true,
 			debug: false
 		}))
-		.pipe(concat(destination + '-css.css'))
+		.pipe(concat('style.css'))
 		.pipe(gulp.dest(path.sassdest))
 });
 
@@ -49,7 +49,7 @@ gulp.task("scripts", function() {
 	            presets: ['env']
 	        }))
 		.pipe(sourcemaps.init())
-		.pipe(concat(destination + '.min.js'))
+		.pipe(concat('main.min.js'))
 		.pipe(uglify().on('error', function(e) {
 			console.log(e);
 		}))

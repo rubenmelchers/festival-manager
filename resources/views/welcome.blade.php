@@ -5,7 +5,7 @@
 
 
 
-    <div class="col-sm-8 blog-main">
+    <div class="col-8 col_sm-12 blog-main">
 
         @if(count($festivals))
 

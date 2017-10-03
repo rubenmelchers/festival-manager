@@ -1,31 +1,33 @@
-<div class="sidebar-module">
+<aside class="sidebar col-3 col_sm-12" data-push-left="off-1 off_sm-0">
+    <div class="sidebar-module">
 
-    <h4>Archives</h4>
+        <h5>Archives</h5>
 
-    <ul class="list-unstyled">
-        @foreach($archives as $stats)
+        <ul class="list-unstyled">
+            @foreach($archives as $stats)
 
-            <li>
-                <a href="/festivals?month={{$stats['month']}}&year={{$stats['year']}}"> {{ $stats['month'] . ' ' . $stats['year'] }}</a>
-            </li>
+                <li>
+                    <a href="/festivals?month={{$stats['month']}}&year={{$stats['year']}}"> {{ $stats['month'] . ' ' . $stats['year'] }}</a>
+                </li>
 
-        @endforeach
-    </ul>
+            @endforeach
+        </ul>
 
-</div>
+    </div>
 
-<div class="sidebar-module">
+    <div class="sidebar-module">
 
-    <h4>Types</h4>
+        <h5>Types</h5>
 
-    <ul class="list-unstyled">
-        @foreach($types as $type)
+        <ul class="list-unstyled">
+            @foreach($types as $type)
 
-            <li>
-                <a href="/festivals/types/{{$type}}">{{$type}}</a>
-            </li>
+                <li>
+                    <a href="/festivals/types/{{$type}}">{{$type}}</a>
+                </li>
 
-        @endforeach
-    </ul>
+            @endforeach
+        </ul>
 
-</div>
+    </div>
+</aside>

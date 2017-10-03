@@ -3,7 +3,7 @@
 
 @section ('content')
 
-    <div class="col-md-8">
+    <div class="col-8 col-sm-12">
         <br>
         @if(Auth::check())
             <a href="/festivals/create">Create new festival</a>

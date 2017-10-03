@@ -2,7 +2,7 @@
 
 @section ('content')
 
-    <div class="col-sm-8 blog-main">
+    <div class="col-8 col_sm-12 blog-main">
 
         <h1>Type: {{ $type->title }}</h1>
 

@@ -8,21 +8,25 @@
 // 		$weights: (100, 200, 300, 400, 500, 600, 700, 800, 900)
 // 	);
 
-$basefont: "opensans", sans-serif;
-$headerfont: "montserrat", sans-serif;
+$basefont: "Open Sans", sans-serif;
+$headerfont: "Raleway", sans-serif;
 
 p,
 span,
 div {
 	font-family: $basefont;
-	font-size: 1.6rem;
+	font-size: 1rem;
 }
 
 h1, h2, h3, h4, h5, h6 {
 	font-family: $headerfont;
 	letter-spacing: .5rem;
 	line-height: 1.5;
-	font-weight: 900;
+	font-weight: 700;
+
+	a {
+		font-family: $headerfont;
+	}
 }
 
 h1 {
