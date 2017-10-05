@@ -10,9 +10,6 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-// Route::get('protected', ['middleware' => ['auth', 'admin'], function() {
-//     return "this page requires that you be logged in and an Admin";
-// }]);
 
 // Home
 Route::get('/', 'HomeController@welcome');
@@ -55,13 +52,13 @@ Route::post('/admin/update/user/{id}', 'SessionController@update');
 Route::get('/admin/delete/user/{id}', 'SessionController@delete');
 
 Route::get('/admin/add/festival', 'AdminController@addFestival');
-Route::post('/admin/add/festival', 'FestivalsController@create');
+Route::post('/admin/add/festival', 'FestivalsController@spl_autoload_register');
 Route::get('admin/update/festival/{id}', 'AdminController@updateFestival');
 Route::post('admin/update/festival/{id}', 'FestivalsController@update');
 Route::get('/admin/delete/festival/{id}', 'FestivalsController@delete');
 
 Route::get('/admin/add/type', 'AdminController@addType');
-Route::post('/admin/add/type', 'TypesController@create');
+Route::post('/admin/add/type', 'TypesController@spl_autoload_register');
 Route::get('admin/update/type/{id}', 'AdminController@updateType');
 Route::post('admin/update/type/{id}', 'TypesController@update');
 Route::get('/admin/delete/type/{id}', 'TypesController@delete');

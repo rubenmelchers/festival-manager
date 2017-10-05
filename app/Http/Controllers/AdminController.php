@@ -23,7 +23,6 @@ class AdminController extends Controller
         $festivals = Festival::latest()->get();
         $types = Type::latest()->get();
 
-
         return view('admin.index', compact('users', 'festivals', 'types'));
     }
 
@@ -35,7 +34,29 @@ class AdminController extends Controller
     }
 
     public function addUser() {
-
         return view('admin.addUser');
+    }
+
+    public function addFestival() {
+        return view('admin.addFestival');
+    }
+
+    public function updateFestival($id) {
+
+        $festival = Festival::where('id', $id)->get();
+        $users = Users::all()->get();
+
+        return view('admin.updateUser', compact('festival', 'users'));
+    }
+
+    public function addType() {
+        return view('admin.addType');
+    }
+
+    public function updateType($id) {
+
+        $type = Type::where('id', $id)->get();
+        
+        return view('admin.updateUser', compact('type'));
     }
 }
