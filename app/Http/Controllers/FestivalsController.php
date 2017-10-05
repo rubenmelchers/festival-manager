@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 Use App\Festival;
+Use App\User;
+use Illuminate\Support\Facades\Auth;
+
 // use Carbon\Carbon;
 
 class FestivalsController extends Controller
@@ -52,6 +55,11 @@ class FestivalsController extends Controller
 
         session()->flash('message', 'You have created festival: "' . request('title') . '"');
 
+        if(Auth::check() && Auth::user()->isAdmin()) {
+            return redirect('admin');
+
+        }
+
         return redirect('/festivals');
     }
 
@@ -60,10 +68,10 @@ class FestivalsController extends Controller
         //get filled out form fields and handle empty fields
 
         if(count(request('created_by'))) {
-            $name = request('name');
+            $user_id = request('created_by');
         }
         else {
-            $name = Festival::where('id', $id)->pluck('user_id')->first();
+            $user_id = Festival::where('id', $id)->pluck('user_id')->first();
         }
 
         if(count(request('title'))) {
@@ -86,7 +94,7 @@ class FestivalsController extends Controller
 
         $festival = Festival::find($id);
 
-        $festival->user_id = $user_id
+        $festival->user_id = $user_id;
         $festival->title = $title;
         $festival->description = $description;
         $festival->location = $location;

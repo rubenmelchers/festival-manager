@@ -44,9 +44,10 @@ class AdminController extends Controller
     public function updateFestival($id) {
 
         $festival = Festival::where('id', $id)->get();
-        $users = Users::all()->get();
+        $users = User::get();
 
-        return view('admin.updateUser', compact('festival', 'users'));
+        // return $id;
+        return view('admin.updateFestival', compact('festival', 'users'));
     }
 
     public function addType() {
@@ -57,6 +58,6 @@ class AdminController extends Controller
 
         $type = Type::where('id', $id)->get();
 
-        return view('admin.updateUser', compact('type'));
+        return view('admin.updateType', compact('type'));
     }
 }

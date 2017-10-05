@@ -12,127 +12,131 @@
 
         <hr>
 
-            <section class="admin__users-section">
-                <h4>
-                    Users
-                </h4>
-                <button type="button" name="users-dropdown" class="admin__showbutton admin__showbutton--users hideTable">
-                    <span></span>
-                </button>
+        <section class="admin__users-section">
+            <h4>
+                Users
+            </h4>
+            <button type="button" name="users-dropdown" class="admin__showbutton admin__showbutton--users hideTable">
+                <span></span>
+            </button>
 
-                <table class="admin__userstable active">
-                    <tr>
-                        <th>
-                            User ID
-                        </th>
-                        <th>
-                            Name
-                        </th>
-                        <th>
-                            Email
-                        </th>
-                        <th>
-                            role
-                        </th>
-                        <th>
-                            Created on
-                        </th>
-                        <th>
-                            Updated on
-                        </th>
-                        <th>
-                            Admin commands
-                        </th>
-                    </tr>
+            <table class="admin__userstable active">
+                <tr>
+                    <th>
+                        User ID
+                    </th>
+                    <th>
+                        Name
+                    </th>
+                    <th>
+                        Email
+                    </th>
+                    <th>
+                        role
+                    </th>
+                    <th>
+                        Created on
+                    </th>
+                    <th>
+                        Updated on
+                    </th>
+                    <th>
+                        Admin commands
+                    </th>
+                </tr>
 
-                    @if(count($users))
-                        @foreach($users as $user)
-                            <tr>
-                                <td class="admin__iddata">{{ $user->id }}</td>
-                                <td class="admin__namedata"> {{ $user->name }} </td>
+                @if(count($users))
+                    @foreach($users as $user)
+                        <tr>
+                            <td class="admin__iddata">{{ $user->id }}</td>
+                            <td class="admin__namedata"> {{ $user->name }} </td>
 
-                                <td> {{ $user->email }} </td>
+                            <td> {{ $user->email }} </td>
 
-                                <td>
-                                    @if(  $user->role  === 1)
-                                        Admin
-                                    @else
-                                        User
-                                    @endif
-                                </td>
+                            <td>
+                                @if(  $user->role  === 1)
+                                    Admin
+                                @else
+                                    User
+                                @endif
+                            </td>
 
-                                <td> {{ $user->created_at->toFormattedDateString() }} </td>
+                            <td> {{ $user->created_at->toFormattedDateString() }} </td>
 
-                                <td> {{ $user->updated_at->toFormattedDateString() }} </td>
+                            <td> {{ $user->updated_at->toFormattedDateString() }} </td>
 
-                                <td>
-                                    <a href="/admin/update/user/{{ $user->id }}">
-                                        Update
-                                    </a>
+                            <td>
+                                <a href="/admin/update/user/{{ $user->id }}">
+                                    Update
+                                </a>
 
-                                    <br>
+                                <br>
 
-                                    <a href="#" class="admin__userdelete">
-                                        Delete
-                                    </a>
+                                <a href="#" class="admin__userdelete">
+                                    Delete
+                                </a>
 
-                                </td>
-                            </tr>
-                        @endforeach
-                    @endif
+                            </td>
+                        </tr>
+                    @endforeach
+                @endif
 
-                    <tr>
-                        <td>
-                            <br>
-                            <a href="/admin/add/user">Add new user</a>
-                            <br>
-                        </td>
-                    </tr>
-                </table>
+                <tr>
+                    <td>
+                        <br>
+                        <a href="/admin/add/user">Add new user</a>
+                        <br>
+                    </td>
+                </tr>
+            </table>
 
-            </section>
-            <hr>
+        </section>
+        <hr>
 
-        @if(count($festivals))
 
-            <section class="admin__festivals-section">
-                <h4>
-                    Festivals
-                </h4>
-                <button type="button" name="festivals-dropdown" class="admin__showbutton admin__showbutton--festivals hideTable">
-                    <span></span>
-                </button>
+        <section class="admin__festivals-section">
+            <h4>
+                Festivals
+            </h4>
+            <button type="button" name="festivals-dropdown" class="admin__showbutton admin__showbutton--festivals hideTable">
+                <span></span>
+            </button>
 
-                <table class="admin__festivalstable active">
-                    <tr>
-                        <th>
-                            Created by
-                        </th>
-                        <th>
-                            Title
-                        </th>
-                        <th class="admin__festivalstable-description">
-                            Description
-                        </th>
-                        <th>
-                            Location
-                        </th>
-                        <th>
-                            Created on
-                        </th>
-                        <th>
-                            Updated on
-                        </th>
-                        <th>
-                            Admin commands
-                        </th>
-                    </tr>
+            <table class="admin__festivalstable active">
+                <tr>
+                    <th>
+                        Festival ID
+                    </th>
+                    <th>
+                        Created by
+                    </th>
+                    <th>
+                        Title
+                    </th>
+                    <th class="admin__festivalstable-description">
+                        Description
+                    </th>
+                    <th>
+                        Location
+                    </th>
+                    <th>
+                        Created on
+                    </th>
+                    <th>
+                        Updated on
+                    </th>
+                    <th>
+                        Admin commands
+                    </th>
+                </tr>
 
+                @if(count($festivals))
                     @foreach($festivals as $festival)
                         <tr>
+                            <td class="admin__iddata">{{$festival->id}}</td>
                             <td> {{ $festival->user->name }} </td>
 
-                            <td> {{ $festival->title }} </td>
+                            <td class="admin__namedata"> {{ $festival->title }} </td>
 
                             <td> {{ $festival->description }} </td>
 
@@ -143,20 +147,32 @@
                             <td> {{ $festival->updated_at->toFormattedDateString() }} </td>
 
                             <td>
-                                Update
+                                <a href="/admin/update/festival/{{ $festival->id }}">
+                                    Update
+                                </a>
 
                                 <br>
 
-                                Delete
+                                <a href="#" class="admin__festivaldelete">
+                                    Delete
+                                </a>
                             </td>
                         </tr>
                     @endforeach
-                </table>
+                @endif
 
-            </section>
-            <hr>
+                <tr>
+                    <td>
+                        <br>
+                        <a href="/admin/add/festival">Add new festival</a>
+                        <br>
+                    </td>
+                </tr>
+            </table>
 
-        @endif
+        </section>
+        <hr>
+
 
 
         @if(count($types))
@@ -200,11 +216,14 @@
                             <td> {{ $type->updated_at->toFormattedDateString() }} </td>
 
                             <td>
-                                Update
+                                <a href="/admin/update/type/{{$type->id}}">
+                                    Update
+                                </a>
 
                                 <br>
-
-                                Delete
+                                <a href="/admin/delete/type/{{$type->id}}">
+                                    Delete
+                                </a>
                             </td>
                         </tr>
                     @endforeach

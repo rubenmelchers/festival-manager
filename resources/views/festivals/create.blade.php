@@ -2,9 +2,16 @@
 
 @section('content')
 
-    <div class="col-sm-8 blog-main">
+    <div class="col-8 blog-main">
 
-        <h1>Create a festival!</h1>
+        @if( Auth::user()->isAdmin() )
+
+            <h1>Add new festival</h1>
+
+        @else
+            <h1>Create a festival!</h1>
+
+        @endif
 
         <hr>
 

@@ -51,14 +51,14 @@ Route::get('/admin/update/user/{id}', 'AdminController@updateUser');
 Route::post('/admin/update/user/{id}', 'SessionController@update');
 Route::get('/admin/delete/user/{id}', 'SessionController@delete');
 
-Route::get('/admin/add/festival', 'AdminController@addFestival');
-Route::post('/admin/add/festival', 'FestivalsController@spl_autoload_register');
+Route::get('/admin/add/festival', 'FestivalsController@create');
+Route::post('/admin/add/festival', 'FestivalsController@store');
 Route::get('admin/update/festival/{id}', 'AdminController@updateFestival');
 Route::post('admin/update/festival/{id}', 'FestivalsController@update');
 Route::get('/admin/delete/festival/{id}', 'FestivalsController@delete');
 
 Route::get('/admin/add/type', 'AdminController@addType');
-Route::post('/admin/add/type', 'TypesController@spl_autoload_register');
+Route::post('/admin/add/type', 'TypesController@store');
 Route::get('admin/update/type/{id}', 'AdminController@updateType');
 Route::post('admin/update/type/{id}', 'TypesController@update');
 Route::get('/admin/delete/type/{id}', 'TypesController@delete');
