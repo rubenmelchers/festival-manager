@@ -26,15 +26,15 @@ class AdminController extends Controller
         return view('admin.index', compact('users', 'festivals', 'types'));
     }
 
+    public function addUser() {
+        return view('admin.addUser');
+    }
+
     public function updateUser($id) {
 
         $user = User::where('id', $id)->get();
         $user->toJson();
         return view('admin.updateUser', compact('user'));
-    }
-
-    public function addUser() {
-        return view('admin.addUser');
     }
 
     public function addFestival() {
@@ -56,7 +56,7 @@ class AdminController extends Controller
     public function updateType($id) {
 
         $type = Type::where('id', $id)->get();
-        
+
         return view('admin.updateUser', compact('type'));
     }
 }

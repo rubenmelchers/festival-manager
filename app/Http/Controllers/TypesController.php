@@ -43,4 +43,39 @@ class TypesController extends Controller
 
         return redirect('/types');
     }
+
+    public function update($id) {
+
+        //get filled out form fields and handle empty fields
+
+        if(count(request('name'))) {
+            $name = request('name');
+        }
+        else {
+            $name = Festival::where('id', $id)->pluck('name')->first();
+        }
+
+        if(count(request('active'))) {
+            $active = request('active');
+        } else {
+            $active = Festival::where('id', $id)->pluck('active')->first();
+        }
+
+        $type = Type::find($id);
+
+        $type->name = $name;
+        $type->active = $type;
+        $type->save();
+
+        return redirect('admin');
+    }
+
+    public function delete($id) {
+
+        $type = Type::find($id);
+        $type->delete();
+
+        return redirect('admin');
+    }
+
 }
