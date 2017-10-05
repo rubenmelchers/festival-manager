@@ -47,8 +47,21 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 //admin related
 Route::get('/admin', 'AdminController@index')->name('adminpanel');
+
 Route::get('/admin/add/user', 'AdminController@addUser');
 Route::post('/admin/add/user', 'RegistrationController@store');
 Route::get('/admin/update/user/{id}', 'AdminController@updateUser');
 Route::post('/admin/update/user/{id}', 'SessionController@update');
 Route::get('/admin/delete/user/{id}', 'SessionController@delete');
+
+Route::get('/admin/add/festival', 'AdminController@addFestival');
+Route::post('/admin/add/festival', 'FestivalsController@create');
+Route::get('admin/update/festival/{id}', 'AdminController@updateFestival');
+Route::post('admin/update/festival/{id}', 'FestivalsController@update');
+Route::get('/admin/delete/festival/{id}', 'FestivalsController@delete');
+
+Route::get('/admin/add/type', 'AdminController@addType');
+Route::post('/admin/add/type', 'TypesController@create');
+Route::get('admin/update/type/{id}', 'AdminController@updateType');
+Route::post('admin/update/type/{id}', 'TypesController@update');
+Route::get('/admin/delete/type/{id}', 'TypesController@delete');

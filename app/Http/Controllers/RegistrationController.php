@@ -49,7 +49,6 @@ class RegistrationController extends Controller
 
         session()->flash('message', 'Thank you for signing up!');
 
-        // return view('sessions.store');
         return redirect()->home();
     }
 }
