@@ -66,16 +66,17 @@
                             <td> {{ $user->updated_at->toFormattedDateString() }} </td>
 
                             <td>
-                                <a href="/admin/update/user/{{ $user->id }}">
+                                <br>
+                                <a href="/admin/update/user/{{ $user->id }}" class="btn btn-primary">
                                     Update
                                 </a>
 
-                                <br>
+                                <br><br>
 
-                                <a href="#" class="admin__userdelete">
+                                <a href="#" class="admin__userdelete btn btn-danger">
                                     Delete
                                 </a>
-
+                                <br><br>
                             </td>
                         </tr>
                     @endforeach
@@ -84,7 +85,7 @@
                 <tr>
                     <td>
                         <br>
-                        <a href="/admin/add/user">Add new user</a>
+                        <a href="/admin/add/user" class="btn btn-primary">Add new user</a>
                         <br>
                     </td>
                 </tr>
@@ -146,16 +147,16 @@
 
                             <td> {{ $festival->updated_at->toFormattedDateString() }} </td>
 
-                            <td>
-                                <a href="/admin/update/festival/{{ $festival->id }}">
+                            <td><br>
+                                <a href="/admin/update/festival/{{ $festival->id }}" class="btn btn-primary">
                                     Update
-                                </a>
+                                </a><br>
 
                                 <br>
 
-                                <a href="#" class="admin__festivaldelete">
+                                <a href="#" class="admin__festivaldelete btn btn-danger">
                                     Delete
-                                </a>
+                                </a><br>
                             </td>
                         </tr>
                     @endforeach
@@ -164,7 +165,7 @@
                 <tr>
                     <td>
                         <br>
-                        <a href="/admin/add/festival">Add new festival</a>
+                        <a href="/admin/add/festival" class="btn btn-primary">Add new festival</a>
                         <br>
                     </td>
                 </tr>
@@ -175,39 +176,43 @@
 
 
 
-        @if(count($types))
 
 
-            <section class="admin__types-section">
-                <h4>
-                    Types
-                </h4>
-                <button type="button" name="types-dropdown" class="admin__showbutton admin__showbutton--types hideTable">
-                    <span></span>
-                </button>
+        <section class="admin__types-section">
+            <h4>
+                Types
+            </h4>
+            <button type="button" name="types-dropdown" class="admin__showbutton admin__showbutton--types hideTable">
+                <span></span>
+            </button>
 
-                <table class="admin__typestable active">
-                    <tr>
-                        <th>
-                            Name
-                        </th>
-                        <th>
-                            Active
-                        </th>
-                        <th>
-                            Created on
-                        </th>
-                        <th>
-                            Updated on
-                        </th>
-                        <th>
-                            Admin commands
-                        </th>
-                    </tr>
+            <table class="admin__typestable active">
+                <tr>
+                    <th>
+                        Type ID
+                    </th>
+                    <th>
+                        Name
+                    </th>
+                    <th>
+                        Active
+                    </th>
+                    <th>
+                        Created on
+                    </th>
+                    <th>
+                        Updated on
+                    </th>
+                    <th>
+                        Admin commands
+                    </th>
+                </tr>
 
+                @if(count($types))
                     @foreach($types as $type)
                         <tr>
-                            <td> {{ $type->name }} </td>
+                            <td class="admin__iddata">{{$type->id}}</td>
+                            <td class="admin__namedata"> {{ $type->name }} </td>
 
                             <td> {{ $type->active }} </td>
 
@@ -215,24 +220,32 @@
 
                             <td> {{ $type->updated_at->toFormattedDateString() }} </td>
 
-                            <td>
-                                <a href="/admin/update/type/{{$type->id}}">
+                            <td><br>
+                                <a href="/admin/update/type/{{$type->id}}" class="btn btn-primary">
                                     Update
                                 </a>
 
-                                <br>
-                                <a href="/admin/delete/type/{{$type->id}}">
+                                <br><br>
+                                <a href="#" class="admin__deletetype btn btn-danger">
                                     Delete
-                                </a>
+                                </a><br><br>
                             </td>
                         </tr>
                     @endforeach
-                </table>
+                @endif
 
-            </section>
-            <hr>
+                <tr>
+                    <td>
+                        <br>
+                        <a href="/admin/add/type" class="btn btn-primary">Add new type</a>
+                        <br>
+                    </td>
+                </tr>
+            </table>
 
-        @endif
+        </section>
+        <hr>
+
 
 
 
