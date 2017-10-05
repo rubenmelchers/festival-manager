@@ -47,6 +47,8 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 //admin related
 Route::get('/admin', 'AdminController@index')->name('adminpanel');
+Route::get('/admin/add/user', 'AdminController@addUser');
+Route::post('/admin/add/user', 'RegistrationController@store');
 Route::get('/admin/update/user/{id}', 'AdminController@updateUser');
 Route::post('/admin/update/user/{id}', 'SessionController@update');
 Route::get('/admin/delete/user/{id}', 'SessionController@delete');

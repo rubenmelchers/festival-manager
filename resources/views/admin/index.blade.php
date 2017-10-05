@@ -12,7 +12,6 @@
 
         <hr>
 
-        @if(count($users))
             <section class="admin__users-section">
                 <h4>
                     Users
@@ -46,44 +45,53 @@
                         </th>
                     </tr>
 
-                    @foreach($users as $user)
-                        <tr>
-                            <td class="admin__iddata">{{ $user->id }}</td>
-                            <td class="admin__namedata"> {{ $user->name }} </td>
+                    @if(count($users))
+                        @foreach($users as $user)
+                            <tr>
+                                <td class="admin__iddata">{{ $user->id }}</td>
+                                <td class="admin__namedata"> {{ $user->name }} </td>
 
-                            <td> {{ $user->email }} </td>
+                                <td> {{ $user->email }} </td>
 
-                            <td>
-                                @if(  $user->role  === 1)
-                                    Admin
-                                @else
-                                    User
-                                @endif
-                            </td>
+                                <td>
+                                    @if(  $user->role  === 1)
+                                        Admin
+                                    @else
+                                        User
+                                    @endif
+                                </td>
 
-                            <td> {{ $user->created_at->toFormattedDateString() }} </td>
+                                <td> {{ $user->created_at->toFormattedDateString() }} </td>
 
-                            <td> {{ $user->updated_at->toFormattedDateString() }} </td>
+                                <td> {{ $user->updated_at->toFormattedDateString() }} </td>
 
-                            <td>
-                                <a href="/admin/update/user/{{ $user->id }}">
-                                    Update
-                                </a>
+                                <td>
+                                    <a href="/admin/update/user/{{ $user->id }}">
+                                        Update
+                                    </a>
 
-                                <br>
+                                    <br>
 
-                                <a href="#" class="admin__userdelete">
-                                    Delete
-                                </a>
+                                    <a href="#" class="admin__userdelete">
+                                        Delete
+                                    </a>
 
-                            </td>
-                        </tr>
-                    @endforeach
+                                </td>
+                            </tr>
+                        @endforeach
+                    @endif
+
+                    <tr>
+                        <td>
+                            <br>
+                            <a href="/admin/add/user">Add new user</a>
+                            <br>
+                        </td>
+                    </tr>
                 </table>
 
             </section>
             <hr>
-        @endif
 
         @if(count($festivals))
 

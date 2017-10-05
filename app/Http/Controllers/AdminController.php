@@ -30,12 +30,12 @@ class AdminController extends Controller
     public function updateUser($id) {
 
         $user = User::where('id', $id)->get();
-
         $user->toJson();
-        // return $user;
-
-
         return view('admin.updateUser', compact('user'));
+    }
 
+    public function addUser() {
+
+        return view('admin.addUser');
     }
 }

@@ -38,6 +38,23 @@ main {
     padding-bottom: 15rem;
 }
 
+.alert.alert-success {
+    position: fixed;
+    right: 5%;
+    bottom: 5%;
+    z-index: 10;
+    padding: 4rem 2rem;
+    opacity: 1;
+
+    &.fadeout {
+        animation: {
+            name: fadeOutRight;
+            duration: 1s;
+            fill-mode: forwards;
+        }
+    }
+}
+
 @import 'footer',
         'header',
         'navigation';

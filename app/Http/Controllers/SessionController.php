@@ -68,6 +68,7 @@ class SessionController extends Controller
 
         $user->name = $name;
         $user->email = $email;
+        $user->role = request('role');
         $user->save();
 
         return redirect('admin');

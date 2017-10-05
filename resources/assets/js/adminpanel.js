@@ -5,7 +5,7 @@
     let userSection = document.querySelector('.admin__users-section'),
         festivalSection = document.querySelector('.admin__festivals-section'),
         typesSection = document.querySelector('.admin__types-section');
-
+        
     if(userSection) {
 
         let userShowButton = userSection.querySelector('.admin__showbutton'),

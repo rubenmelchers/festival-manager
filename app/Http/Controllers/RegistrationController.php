@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\User;
 use App\Mail\Welcome;
+use Illuminate\Support\Facades\Auth;
 
 class RegistrationController extends Controller
 {
@@ -33,13 +34,20 @@ class RegistrationController extends Controller
             'password' => bcrypt(request('password'))
         ]);
 
+
+        if(Auth::check() && Auth::user()->isAdmin()) {
+            session()->flash('message', 'User ' . request('name') . ' was succesfully created!');
+
+            return redirect('admin');
+        }
+
         //sign user in
         auth()->login($user);
 
         \Mail::to($user)->send(new Welcome($user));
 
-        session()->flash('message', 'Thank you for signing up!');
 
+        session()->flash('message', 'Thank you for signing up!');
 
         // return view('sessions.store');
         return redirect()->home();

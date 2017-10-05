@@ -28,6 +28,25 @@
 
                     </div>
 
+                    <div class="form-group col-5 col_sm-12">
+                        <label for="role">Role:</label>
+
+                        @if( $user->role == 1)
+                            <p>Account is currently an administrator</p>
+                            <select class="form-control" name="role">
+                                <option value="1" selected>Administrator</option>
+                                <option value="2">User</option>
+                            </select>
+                        @else
+                            <p>Account is currently a user</p>
+                            <select class="form-control" name="role">
+                                <option value="1">Administrator</option>
+                                <option value="2" selected>User</option>
+                            </select>
+                        @endif
+
+                    </div>
+
                     <button type="submit" class="btn btn-primary">Update</button>
 
                     @include('layouts.errors')
