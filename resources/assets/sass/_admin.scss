@@ -10,12 +10,21 @@
         position: relative;
     }
 
-    &__userstable {
+    &__userstable,
+    &__festivalstable,
+    &__typestable {
         transition: 250ms $easeInOutQuart;
         position: relative;
         width: 100%;
         opacity: 0;
         display: none;
+
+        tbody {
+            tr {
+                margin-bottom: 2rem;
+                border-bottom: .1rem solid $black;
+            }
+        }
 
         &.active {
             display: table;
@@ -66,16 +75,45 @@
             top: 0;
 
             &:after {
-                content: 'Show users table';
+                content: '';
                 width: 10rem;
                 position: absolute;
             }
         }
 
+        &--users {
+            span::after {
+                content: 'Show users table';
+            }
+        }
+
+        &--festivals {
+            span::after {
+                content: 'Show festivals table';
+            }
+        }
+
+        &--types {
+            span::after {
+                content: 'Show types table';
+            }
+        }
+
         &.hideTable {
-            span {
-                &:after {
-                    content: 'Hide users table';
+
+            &.admin {
+                &__showbutton {
+                    &--users span::after {
+                        content: 'Hide users table';
+                    }
+
+                    &--festivals span::after {
+                        content: 'Hide festivals table';
+                    }
+
+                    &--types span::after {
+                        content: 'Hide types table';
+                    }
                 }
             }
 
@@ -97,6 +135,84 @@
 
             &:after {
                 transform: rotate(-45deg) translate(-45%, 0%);
+            }
+        }
+    }
+
+    &__festivalstable-description {
+        width: 50%;
+    }
+
+    &__confirmdelete {
+        position: fixed;
+        z-index: 1000000;
+        top: 50%;
+        left: 50%;
+        padding: 2.5rem 3rem;
+        transform: translate(-50%, -50%);
+        opacity: 0;
+
+        background: $white;
+        border: .1rem solid $black;
+        border-radius: .75rem;
+
+        animation: {
+            name: fadeIn;
+            duration: 250ms;
+            delay: 500ms;
+            fill-mode: forwards;
+        }
+
+        &-applybutton {
+            left: 50%;
+            position: relative;
+            transform: translateX(-50%);
+        }
+
+        &-exitbutton {
+            position: absolute;
+            top: -15%;
+            right: -5%;
+            background: $black;
+            width: 3rem;
+            height: 3rem;
+            border-radius: 100%;
+            pointer-events: all;
+            cursor: pointer;
+
+            &:before,
+            &:after {
+                content: '';
+                position: absolute;
+                top: 50%;
+                left: 25%;
+                width: 50%;
+                height: .1rem;
+                background: $white;
+            }
+
+            &:before {
+                transform: rotate(45deg) translate(0%, 0%);
+            }
+
+            &:after {
+                transform: rotate(-45deg) translate(0%, 0%);
+            }
+        }
+
+        &-canvas {
+            position: fixed;
+            z-index: 100000;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba($black, .75);
+
+            animation: {
+                name: fadeIn;
+                duration: 250ms;
+
             }
         }
     }

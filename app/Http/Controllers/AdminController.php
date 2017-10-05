@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 
 Use App\User;
 Use App\Festival;
+use App\Type;
 
 
 class AdminController extends Controller
@@ -19,8 +20,22 @@ class AdminController extends Controller
     public function index() {
 
         $users = User::latest()->get();
+        $festivals = Festival::latest()->get();
+        $types = Type::latest()->get();
 
 
-        return view('admin.index', compact('users'));
+        return view('admin.index', compact('users', 'festivals', 'types'));
+    }
+
+    public function updateUser($id) {
+
+        $user = User::where('id', $id)->get();
+
+        $user->toJson();
+        // return $user;
+
+
+        return view('admin.updateUser', compact('user'));
+
     }
 }

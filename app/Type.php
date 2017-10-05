@@ -19,6 +19,10 @@ class Type extends Model
         return $this->belongsToMany(Festival::class);
     }
 
+    public function delete() {
+        $this->festivals()->delete();
+    }
+
     public function getRouteKeyName() {
 
         return 'name';

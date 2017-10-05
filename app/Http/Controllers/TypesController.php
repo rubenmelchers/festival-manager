@@ -11,8 +11,6 @@ class TypesController extends Controller
 
     public function index(Type $type) {
 
-        // $types = Type::latest()->get();
-
         $festivals = $type->festivals;
 
         return view('festivals.index', compact('festivals'));

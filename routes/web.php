@@ -46,4 +46,7 @@ Route::get('/logout', 'SessionController@destroy');
 Route::get('/home', 'HomeController@index')->name('home');
 
 //admin related
-Route::get('/admin', 'AdminController@index');
+Route::get('/admin', 'AdminController@index')->name('adminpanel');
+Route::get('/admin/update/user/{id}', 'AdminController@updateUser');
+Route::post('/admin/update/user/{id}', 'SessionController@update');
+Route::get('/admin/delete/user/{id}', 'SessionController@delete');

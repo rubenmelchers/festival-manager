@@ -2,13 +2,17 @@
 
 namespace App\Http\Controllers;
 
+use Auth;
+use App\User;
 use Illuminate\Http\Request;
 
 class SessionController extends Controller
 {
 
     public function __construct() {
-        $this->middleware('guest', ['except' => 'destroy']);
+        $this->middleware('admin', ['only' => ['update', 'delete']]);
+        $this->middleware('guest', ['except' => ['destroy', 'update', 'delete']]);
+
     }
 
     public function create() {
@@ -41,5 +45,39 @@ class SessionController extends Controller
         auth()->logout();
 
         return redirect()->home();
+    }
+
+    public function update($id) {
+
+        //get filled out form fields and handle empty fields
+
+        if(count(request('name'))) {
+            $name = request('name');
+        }
+        else {
+            $name = User::where('id', $id)->pluck('name')->first();
+        }
+
+        if(count(request('email'))) {
+            $email = request('email');
+        } else {
+            $email = User::where('id', $id)->pluck('email')->first();
+        }
+
+        $user = User::find($id);
+
+        $user->name = $name;
+        $user->email = $email;
+        $user->save();
+
+        return redirect('admin');
+    }
+
+    public function delete($id) {
+
+        $user = User::find($id);
+        $user->delete();
+
+        return redirect('admin');
     }
 }
