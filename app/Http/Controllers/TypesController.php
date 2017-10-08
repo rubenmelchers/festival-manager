@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Type;
+use Illuminate\Support\Facades\Auth;
+
 
 class TypesController extends Controller
 {
@@ -32,14 +34,22 @@ class TypesController extends Controller
     public function store() {
 
         $this->validate(request(), [
-            'title' => 'required',
-            'description' => 'required'
+            'name' => 'required',
+            'active' => 'required'
         ]);
 
         Type::create([
-            'title' => request('title'),
-            'description' => request('description')
+            'name' => request('name'),
+            'active' => (int) request('active')
         ]);
+
+        session()->flash('message', 'You have created festival: "' . request('name') . '"');
+
+
+        if(Auth::check() && Auth::user()->isAdmin()) {
+            return redirect('admin');
+
+        }
 
         return redirect('/types');
     }
@@ -52,19 +62,19 @@ class TypesController extends Controller
             $name = request('name');
         }
         else {
-            $name = Festival::where('id', $id)->pluck('name')->first();
+            $name = Type::where('id', $id)->pluck('name')->first();
         }
 
         if(count(request('active'))) {
-            $active = request('active');
+            $active = (int) request('active');
         } else {
-            $active = Festival::where('id', $id)->pluck('active')->first();
+            $active = Type::where('id', $id)->pluck('active')->first();
         }
 
         $type = Type::find($id);
 
         $type->name = $name;
-        $type->active = $type;
+        $type->active = $active;
         $type->save();
 
         return redirect('admin');
@@ -73,7 +83,9 @@ class TypesController extends Controller
     public function delete($id) {
 
         $type = Type::find($id);
+        session()->flash('message', 'You have deleted type: "' . $type->name . '"');
         $type->delete();
+
 
         return redirect('admin');
     }

@@ -1,4 +1,4 @@
-@extends('layouts.master')
+@extends('layouts.fullwidth')
 
 @section('content')
 
@@ -43,6 +43,39 @@
             <div class="form-group">
                 <label for="location">Festival address: </label>
                 <input type="text" class="form-control" id="location" name="location" placeholder="{{$festival->location}}" >
+            </div>
+
+            <div class="form-group">
+                Festival types:
+                <br>
+                ( Currently chosen:
+                @foreach($festival->types as $activetype)
+
+                    @if($loop->last)
+                        <strong>
+                            {{ $activetype->name }}
+                        </strong>
+                    @else
+                        <strong>
+                            {{ $activetype->name }},
+                        </strong>
+                    @endif
+                @endforeach
+                 )
+
+                <ul>
+
+                    @foreach($types as $type)
+
+                        <li>
+                            <label for="type[{{ $type->name }}]">{{ $type->name }}</label>
+
+                            <input type="checkbox" name="type[{{ $type->name }}]" value="{{ $type->id }}">
+                        </li>
+
+                    @endforeach
+
+                </ul>
             </div>
 
             <button type="submit" class="btn btn-primary">Submit</button>

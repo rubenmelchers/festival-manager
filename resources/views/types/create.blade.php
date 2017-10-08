@@ -12,13 +12,17 @@
             {{ csrf_field() }}
 
             <div class="form-group">
-                <label for="title">Title:</label>
-                <input type="text" class="form-control" id="title" name="title">
+                <label for="name">Type name:</label>
+                <input type="text" class="form-control" id="name" name="name">
             </div>
 
             <div class="form-group">
-                <label for="description">Type description: </label>
-                <textarea name="description" id="description" rows="8" cols="80" class="form-control"></textarea>
+                <label for="active">Type status: </label>
+
+                <select class="form-control" name="active">
+                    <option value="1">Active</option>
+                    <option value="0">Inactive</option>
+                </select>
             </div>
             <button type="submit" class="btn btn-primary">Submit</button>
 

@@ -31,14 +31,13 @@ Route::get('/festivals/types/{type}', 'TypesController@index');
 // Comments
 Route::post('/festivals/{festival}/comments', 'CommentsController@store');
 
-// Auth::routes();
-
 //User related
 Route::get('/register', 'RegistrationController@create');
 Route::post('/register', 'RegistrationController@store');
 Route::get('/login', 'SessionController@create')->name('login');
 Route::post('/login', 'SessionController@store');
 Route::get('/logout', 'SessionController@destroy');
+Route::get('/users/{id}', 'SessionController@accountPage');
 
 Route::get('/home', 'HomeController@index')->name('home');
 
@@ -57,7 +56,7 @@ Route::get('admin/update/festival/{id}', 'AdminController@updateFestival');
 Route::post('admin/update/festival/{id}', 'FestivalsController@update');
 Route::get('/admin/delete/festival/{id}', 'FestivalsController@delete');
 
-Route::get('/admin/add/type', 'AdminController@addType');
+Route::get('/admin/add/type', 'TypesController@create');
 Route::post('/admin/add/type', 'TypesController@store');
 Route::get('admin/update/type/{id}', 'AdminController@updateType');
 Route::post('admin/update/type/{id}', 'TypesController@update');

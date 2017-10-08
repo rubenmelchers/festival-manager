@@ -11,8 +11,8 @@ class SessionController extends Controller
 
     public function __construct() {
         $this->middleware('admin', ['only' => ['update', 'delete']]);
-        $this->middleware('guest', ['except' => ['destroy', 'update', 'delete']]);
-
+        $this->middleware('guest', ['except' => ['destroy', 'update', 'delete', 'accountPage']]);
+        $this->middleware('auth', ['only' => ['accountPage']]);
     }
 
     public function create() {
@@ -32,10 +32,6 @@ class SessionController extends Controller
                 'message' => 'Please check your credentials and try again'
             ]);
         }
-
-
-        //if so, sign them in
-
 
         //redirect to home page
         return redirect()->home();
@@ -80,5 +76,23 @@ class SessionController extends Controller
         $user->delete();
 
         return redirect('admin');
+    }
+
+    public function accountPage($id) {
+
+        //get logged in user ID
+        $user_id = Auth::user()->id;
+
+        //handle accountpage request with another user id
+        if($user_id != $id) {
+            session()->flash('message', "You can't access another account's page!");
+
+            return redirect('home');
+        }
+
+        $user = User::find($id);
+
+        return view('sessions.show', compact('user'));
+
     }
 }

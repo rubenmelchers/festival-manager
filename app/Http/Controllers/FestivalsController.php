@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 
 Use App\Festival;
 Use App\User;
+Use App\Type;
 use Illuminate\Support\Facades\Auth;
 
 // use Carbon\Carbon;
@@ -36,13 +37,15 @@ class FestivalsController extends Controller
 
     public function create() {
 
-        return view('festivals.create');
+        $types = Type::latest()->get();
+
+        return view('festivals.create', compact('types'));
     }
 
-    public function store() {
+    public function store(Request $request) {
 
         $this->validate(request(), [
-            'title' => 'required',
+            'title' => 'required|unique:festivals',
             'description' => 'required',
             'location' => 'required'
         ]);
@@ -52,6 +55,18 @@ class FestivalsController extends Controller
 
             new Festival(request(['title', 'description', 'location']))
         );
+
+
+        if(count($request->type)) {
+            $types = $request->type;
+
+            $festival = Festival::where('title', request('title'))->first();
+
+            foreach($types as $type) {
+                $festival->addType($festival->id, $type);
+            }
+        }
+
 
         session()->flash('message', 'You have created festival: "' . request('title') . '"');
 
@@ -66,7 +81,6 @@ class FestivalsController extends Controller
     public function update($id) {
 
         //get filled out form fields and handle empty fields
-
         if(count(request('created_by'))) {
             $user_id = request('created_by');
         }
@@ -106,6 +120,9 @@ class FestivalsController extends Controller
     public function delete($id) {
 
         $festival = Festival::find($id);
+
+        session()->flash('message', 'You have delete festival: "' . $festival->title . '"');
+
         $festival->delete();
 
         return redirect('admin');

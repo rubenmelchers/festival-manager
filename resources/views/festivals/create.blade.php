@@ -33,6 +33,19 @@
                 <input type="text" class="form-control" id="location" name="location" placeholder="voorbeeldstraat 10, stad" >
             </div>
 
+            @if(count($types))
+                <div class="form-group">
+                    <span>Festival type:</span><br>
+
+                    @foreach($types as $type)
+                        <label for="type[{{ $type->name }}]">{{ $type->name }}</label>
+                        <input type="checkbox" name="type[{{ $type->name }}]" value="{{ $type->id }}">
+                        <br>
+                    @endforeach
+
+                </div>
+            @endif
+
             <button type="submit" class="btn btn-primary">Submit</button>
 
             @include('layouts.errors')

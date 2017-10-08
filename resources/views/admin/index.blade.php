@@ -246,9 +246,6 @@
         </section>
         <hr>
 
-
-
-
     </div>  <!-- End of main div -->
 
 

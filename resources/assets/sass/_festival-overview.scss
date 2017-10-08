@@ -1,0 +1,36 @@
+.festival-overview {
+    position: relative;
+
+    &__single {
+        background: rgba($primary, .75);
+        margin-bottom: 1rem;
+        border-radius: 1rem;
+        padding: 1rem;
+    }
+
+    &__title {
+
+
+        span {
+            font-weight: 900;
+        }
+    }
+
+    &__description {
+        span {
+            font-weight: 900;
+        }
+    }
+
+    &__location {
+        span {
+            font-weight: 900;
+        }
+    }
+
+    &__types {
+        span {
+            font-weight: 900;
+        }
+    }
+}

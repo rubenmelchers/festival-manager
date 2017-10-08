@@ -2,7 +2,7 @@
 
 @section ('content')
 
-    <div class="col-sm-8 blog-main">
+    <div class="col-8 col_sm-12 blog-main">
 
         <h1>Festival: {{ $festival->title }}</h1>
         <p class="blog-post-meta">
@@ -13,7 +13,7 @@
         @if(count($festival->types))
 
             <ul>
-                @foreach($fetival->types as $type)
+                @foreach($festival->types as $type)
 
                     <li>
                         <a href="/festivals/types/{{ $type->name }}">

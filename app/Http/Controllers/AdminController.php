@@ -45,9 +45,10 @@ class AdminController extends Controller
 
         $festival = Festival::where('id', $id)->get();
         $users = User::get();
+        $types = Type::get();
 
         // return $id;
-        return view('admin.updateFestival', compact('festival', 'users'));
+        return view('admin.updateFestival', compact('festival', 'users', 'types'));
     }
 
     public function addType() {

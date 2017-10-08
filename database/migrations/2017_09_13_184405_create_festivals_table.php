@@ -17,7 +17,7 @@ class CreateFestivalsTable extends Migration
             $table->increments('id');
 
             $table->integer('user_id');
-            $table->string('title');
+            $table->string('title')->unique();
             $table->text('description');
             $table->string('location');
 

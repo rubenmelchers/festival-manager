@@ -3,7 +3,7 @@
 namespace App;
 
 Use App\Auth;
-
+Use DB;
 use Carbon\Carbon;
 
 class Festival extends Model
@@ -55,6 +55,33 @@ class Festival extends Model
     public function types() {
 
         return $this->belongsToMany(Type::class);
+    }
+
+    public function addType($festival_id, $type_id) {
+
+        DB::table('festival_type')->insert([
+            'festival_id' => $festival_id,
+            'type_id' => $type_id
+        ]);
+
+    }
+
+    public function removeType($festival_id, $type_id) {
+
+        $whereArray = array(
+            array(
+                'field' => 'festival_id',
+                'operator' => '=',
+                'value' => $festival_id
+            ),
+            array(
+                'field' => 'type_id',
+                'operator' => '=',
+                'value' => $type_id
+            )
+        );
+
+        DB::table('festival_type')->where($whereArray)->delete();
     }
 
 }

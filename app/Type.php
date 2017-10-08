@@ -27,4 +27,5 @@ class Type extends Model
 
         return 'name';
     }
+
 }
