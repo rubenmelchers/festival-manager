@@ -38,6 +38,8 @@ Route::get('/login', 'SessionController@create')->name('login');
 Route::post('/login', 'SessionController@store');
 Route::get('/logout', 'SessionController@destroy');
 Route::get('/users/{id}', 'SessionController@accountPage');
+Route::get('/users/{id}/update', 'SessionController@updateView');
+Route::post('/users/{id}/update', 'SessionController@updateAccount');
 
 Route::get('/home', 'HomeController@index')->name('home');
 

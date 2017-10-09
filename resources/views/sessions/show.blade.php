@@ -62,5 +62,27 @@
 
     </div>
 
+    <div class="col-3 col_sm-12" data-push-left="off-1">
+
+        Your info:
+        <br><br>
+
+        Name: {{ $user->name }}
+        <br>
+        Email: {{ $user->email }}
+        <br>
+        Role:
+        @if( $user->role == 1)
+            Admin
+        @else
+            User
+        @endif
+        <br>
+        Member since: {{ $user->created_at->toFormattedDateString() }}
+
+        <br><br>
+        <a href="/users/{{ $user->id }}/update">Update info</a>
+    </div>
+
 
 @endsection

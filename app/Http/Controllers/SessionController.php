@@ -11,8 +11,8 @@ class SessionController extends Controller
 
     public function __construct() {
         $this->middleware('admin', ['only' => ['update', 'delete']]);
-        $this->middleware('guest', ['except' => ['destroy', 'update', 'delete', 'accountPage']]);
-        $this->middleware('auth', ['only' => ['accountPage']]);
+        $this->middleware('guest', ['except' => ['destroy', 'update', 'delete', 'accountPage', 'updateAccount', 'updateView']]);
+        $this->middleware('auth', ['only' => ['accountPage', 'updateAccount', 'updateView']]);
     }
 
     public function create() {
@@ -46,28 +46,82 @@ class SessionController extends Controller
     public function update($id) {
 
         //get filled out form fields and handle empty fields
+        $user = User::find($id);
 
         if(count(request('name'))) {
             $name = request('name');
-        }
-        else {
-            $name = User::where('id', $id)->pluck('name')->first();
+            $user->name = $name;
         }
 
         if(count(request('email'))) {
             $email = request('email');
-        } else {
-            $email = User::where('id', $id)->pluck('email')->first();
+            $user->email = $email;
         }
 
-        $user = User::find($id);
+        if(count(request('password'))) {
+            $password = request('password');
+            $user->password = $password;
+        }
 
-        $user->name = $name;
-        $user->email = $email;
+
         $user->role = request('role');
         $user->save();
 
         return redirect('admin');
+    }
+
+    public function updateView($id) {
+        //get logged in user ID
+        $user_id = Auth::user()->id;
+
+        //handle accountpage request with another user id
+        if($user_id != $id) {
+            session()->flash('message', "You can't access another account's page!");
+
+            return redirect('home');
+        }
+
+        $user = User::find($id);
+
+        return view('sessions.update', compact('user'));
+    }
+
+    public function updateAccount($id) {
+
+        //get logged in user ID
+        $user_id = Auth::user()->id;
+
+        //handle accountpage request with another user id
+        if($user_id != $id) {
+            session()->flash('message', "You can't access another account's page!");
+
+            return redirect('home');
+        }
+
+        $user = User::find($id);
+
+        if(count(request('name'))) {
+            $name = request('name');
+            $user->name = $name;
+        }
+
+
+        if(count(request('email'))) {
+            $email = request('email');
+            $user->email = $email;
+        }
+
+        if(count(request('password'))) {
+            $password = bcrypt(request('password'));
+            $user->password = $password;
+        }
+
+
+        $user->save();
+
+        session()->flash('message', 'You have succesfully updated your account!');
+        return redirect()->back();
+
     }
 
     public function delete($id) {

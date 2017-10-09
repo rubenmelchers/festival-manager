@@ -20,6 +20,9 @@
         <h5>Types</h5>
 
         <ul class="list-unstyled">
+            <li>
+                <a href="/festivals">All</a>
+            </li><br>
             @foreach($types as $type)
 
                 <li>

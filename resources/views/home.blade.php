@@ -1,4 +1,4 @@
-@extends('layouts.master')
+@extends('layouts.fullwidth')
 
 @section('content')
 <div class="container">

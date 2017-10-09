@@ -78,40 +78,39 @@ class FestivalsController extends Controller
         return redirect('/festivals');
     }
 
-    public function update($id) {
+    public function update($id, Request $request) {
 
         //get filled out form fields and handle empty fields
+        $festival = Festival::find($id);
+
         if(count(request('created_by'))) {
             $user_id = request('created_by');
-        }
-        else {
-            $user_id = Festival::where('id', $id)->pluck('user_id')->first();
+            $festival->user_id = $user_id;
         }
 
         if(count(request('title'))) {
             $title = request('title');
-        } else {
-            $title = Festival::where('id', $id)->pluck('title')->first();
+            $festival->title = $title;
         }
 
         if(count(request('description'))) {
             $description = request('description');
-        } else {
-            $description = Festival::where('id', $id)->pluck('description')->first();
+            $festival->description = $description;
         }
 
         if(count(request('location'))) {
             $location = request('location');
-        } else {
-            $location = Festival::where('id', $id)->pluck('location')->first();
+            $festival->location = $location;
         }
 
-        $festival = Festival::find($id);
+        if(count($request->type)) {
+            $types = $request->type;
 
-        $festival->user_id = $user_id;
-        $festival->title = $title;
-        $festival->description = $description;
-        $festival->location = $location;
+            foreach($types as $type) {
+                $festival->addType($festival->id, $type);
+            }
+        }
+
         $festival->save();
 
         return redirect('admin');

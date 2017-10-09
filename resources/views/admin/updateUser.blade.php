@@ -1,4 +1,4 @@
-@extends('layouts.master')
+@extends('layouts.fullwidth')
 
 @section('content')
 
@@ -25,6 +25,13 @@
                         <label for="email" class="col-8 col_sm-12 control-label">Email Address: </label>
 
                         <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}" placeholder="{{$user->email}}">
+
+                    </div>
+
+                    <div class="form-group col-6 col_sm-12">
+                        <label for="password" class="col-8 col_sm-12 control-label">Password:</label>
+
+                        <input type="password" name="password" class="form-control">
 
                     </div>
 
