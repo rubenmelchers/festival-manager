@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Auth;
 use App\User;
+use App\Festival;
+use App\Type;
 use Illuminate\Http\Request;
 
 class SessionController extends Controller
@@ -11,8 +13,8 @@ class SessionController extends Controller
 
     public function __construct() {
         $this->middleware('admin', ['only' => ['update', 'delete']]);
-        $this->middleware('guest', ['except' => ['destroy', 'update', 'delete', 'accountPage', 'updateAccount', 'updateView']]);
-        $this->middleware('auth', ['only' => ['accountPage', 'updateAccount', 'updateView']]);
+        $this->middleware('guest', ['except' => ['destroy', 'update', 'delete', 'accountPage', 'updateAccount', 'updateView', 'updateFestival']]);
+        $this->middleware('auth', ['only' => ['accountPage', 'updateAccount', 'updateView', 'updateFestival']]);
     }
 
     public function create() {
@@ -122,6 +124,21 @@ class SessionController extends Controller
         session()->flash('message', 'You have succesfully updated your account!');
         return redirect()->back();
 
+    }
+
+    public function updateFestival($id, $festival) {
+        $user_id = Auth::user()->id;
+        $festival = Festival::find($festival);
+
+        if($user_id != $festival->user_id) {
+            session()->flash('message', "You can't update festivals that are not created by you!");
+
+            return redirect('users' . $user_id);
+        }
+
+        $types = Type::get();
+
+        return view('festivals.update', compact('festival', 'types'));
     }
 
     public function delete($id) {

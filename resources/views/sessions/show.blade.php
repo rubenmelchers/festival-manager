@@ -52,6 +52,12 @@
                             </div>
                         @endif
 
+                        <div class="col-12">
+                            <a href="/users/{{ Auth::user()->id }}/update/festival/{{ $festival->id }}" class="btn btn-info">
+                                Update Festival
+                            </a>
+                        </div>
+
 
                     </div>
 

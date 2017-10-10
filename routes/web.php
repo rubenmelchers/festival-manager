@@ -40,6 +40,8 @@ Route::get('/logout', 'SessionController@destroy');
 Route::get('/users/{id}', 'SessionController@accountPage');
 Route::get('/users/{id}/update', 'SessionController@updateView');
 Route::post('/users/{id}/update', 'SessionController@updateAccount');
+Route::get('/users/{id}/update/festival/{festival}', 'SessionController@updateFestival');
+Route::post('/users/{id}/update/festival/{festival}', 'FestivalsController@update');
 
 Route::get('/home', 'HomeController@index')->name('home');
 

@@ -66,6 +66,17 @@ class Festival extends Model
 
     }
 
+    public function typesPivot() {
+
+        // DB::table('festival_type')
+        // return $this->belongsToMany(Type::class)->withPivot('festival_id', 'type_id');
+        return $this->belongsToMany('App\Type', 'festival_type');
+    }
+
+    public function updateTypes() {
+
+    }
+
     public function removeType($festival_id, $type_id) {
 
         $whereArray = array(

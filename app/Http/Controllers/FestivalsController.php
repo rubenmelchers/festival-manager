@@ -104,11 +104,21 @@ class FestivalsController extends Controller
         }
 
         if(count($request->type)) {
+
+            //save the checked checkbox
             $types = $request->type;
 
+            //remove the unchecked checkboxed from the db table where the festival id is given
+            $festival->typesPivot()->detach();
+
+            //loop through given types and add them to the pivot table
             foreach($types as $type) {
-                $festival->addType($festival->id, $type);
+
+                // $festival->addType($festival->id, $type);
+                $festival->typesPivot()->attach($type);
             }
+        } else {
+            $festival->typesPivot()->detach();
         }
 
         $festival->save();

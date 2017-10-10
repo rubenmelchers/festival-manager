@@ -5,37 +5,19 @@
     <div class="col-12 col_sm-12 blog-main">
 
 
-        @foreach($festival as $festival)
-            <h1>Update festival <br>
-                <strong>
+        {{-- @foreach($festival as $festival) --}}
+            <h1>Update festival: <br>
                     {{ $festival->title }}
-                </strong>
             </h1>
 
             <hr>
 
-        @endforeach
-        <form method="POST" action="/admin/update/festival/{{$festival->id}}">
+        {{-- @endforeach --}}
+        <form method="POST" action="/users/{{$festival->id}}">
             {{ csrf_field() }}
 
             <div class="form-group">
-                <label for="created_by">Created by:</label>
-                <br>
-                Currently by {{$festival->user->name}}
-
-                <select class="form-control" name="created_by">
-                    @foreach($users as $user)
-                        <option value="{{$user->id}}">
-                            {{$user->name}}
-                        </option>
-
-                    @endforeach
-                </select>
-
-            </div>
-
-            <div class="form-group">
-                <label for="title">Title:</label>
+                <label for="title">{{ trans('form.title') }}</label>
                 <input type="text" class="form-control" id="title" name="title" placeholder="{{$festival->title}}">
             </div>
 
