@@ -123,7 +123,11 @@ class FestivalsController extends Controller
 
         $festival->save();
 
-        return redirect('admin');
+        if(Auth::check() && Auth::user()->isAdmin()) {
+            return redirect('admin');
+        }
+
+        return redirect('users/' . Auth::user()->id);
     }
 
     public function delete($id) {

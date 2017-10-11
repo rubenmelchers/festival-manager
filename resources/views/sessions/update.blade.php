@@ -13,8 +13,14 @@
              </h1>
             <hr>
 
-                <form method="POST" action="/users/{{ $user->id }}/update">
+                <form method="POST" action="/users/{{ $user->id }}/update" enctype="multipart/form-data">
                     {{ csrf_field() }}
+
+                    <div class="form-group col-8 col_sm-12">
+                        <label for="avatar">Avatar:</label><br>
+                        <input type="file" name="avatar" id="avatar" value="Upload profile picture">
+
+                    </div>
 
                     <div class="form-group col-6 col_sm-12">
                         <label for="name" class="col-6">Name:</label>

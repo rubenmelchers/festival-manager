@@ -68,9 +68,12 @@
 
     </div>
 
-    <div class="col-3 col_sm-12" data-push-left="off-1">
+    <div class="col-3 col_sm-12 account-aside" data-push-left="off-1">
 
         Your info:
+        <br><br>
+
+        <img src="{{asset($user->avatar)}}" alt="{{$user->name}}'s profile picture" class="account-aside__avatar">
         <br><br>
 
         Name: {{ $user->name }}

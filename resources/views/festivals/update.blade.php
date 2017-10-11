@@ -13,7 +13,7 @@
             <hr>
 
         {{-- @endforeach --}}
-        <form method="POST" action="/users/{{$festival->id}}">
+        <form method="POST" action="/users/update/festival/{{$festival->id}}">
             {{ csrf_field() }}
 
             <div class="form-group">

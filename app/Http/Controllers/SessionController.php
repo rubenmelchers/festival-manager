@@ -7,6 +7,7 @@ use App\User;
 use App\Festival;
 use App\Type;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class SessionController extends Controller
 {
@@ -45,7 +46,7 @@ class SessionController extends Controller
         return redirect()->home();
     }
 
-    public function update($id) {
+    public function update($id, Request $request) {
 
         //get filled out form fields and handle empty fields
         $user = User::find($id);
@@ -88,7 +89,7 @@ class SessionController extends Controller
         return view('sessions.update', compact('user'));
     }
 
-    public function updateAccount($id) {
+    public function updateAccount($id, Request $request) {
 
         //get logged in user ID
         $user_id = Auth::user()->id;
@@ -101,6 +102,22 @@ class SessionController extends Controller
         }
 
         $user = User::find($id);
+
+        // return $user;
+        //
+
+
+        if($request->hasFile('avatar')) {
+            // return $request->avatar;
+            $this->validate($request, [
+                'avatar' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            ]);
+
+            $avatar = $request->file('avatar');
+            $path = $avatar->store('public/avatars');
+
+            $user->avatar = Storage::url($path);
+        }
 
         if(count(request('name'))) {
             $name = request('name');
