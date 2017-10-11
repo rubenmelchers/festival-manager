@@ -20,6 +20,10 @@ class CreateFestivalsTable extends Migration
             $table->string('title')->unique();
             $table->text('description');
             $table->string('location');
+            $table->string('image')->nullable();
+            $table->date('date');
+            $table->time('starttime')->nullable();
+            $table->time('endtime')->nullable();
 
             $table->timestamps();
         });

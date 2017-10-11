@@ -33,9 +33,13 @@ div {
 	margin: 0 auto;
 }
 
-main {
-    padding-top: 10rem;
+.main {
+    padding-top: 0rem;
     padding-bottom: 15rem;
+
+    &--master {
+        padding-top: 10rem;
+    }
 }
 
 .alert.alert-success {

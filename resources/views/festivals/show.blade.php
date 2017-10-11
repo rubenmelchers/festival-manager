@@ -1,106 +1,50 @@
-@extends ('layouts.master')
+@extends ('layouts.detail')
 
 @section ('content')
 
-    <div class="col-8 col_sm-12 blog-main">
+    <div class="festival">
+        <header class="festival__header grid-12">
+            @if($festival->image != "")
+                <div class="festival__image" style="background: url({{$festival->image}})"></div>
 
-        <h1>Festival: {{ $festival->title }}</h1>
-        <p class="blog-post-meta">
-            By {{ $festival->user->name }} on
-            {{ $festival->created_at->toFormattedDateString() }}
-        </p>
+            @else
+                <div class="festival__image festival__image--nobackground"></div>
+            @endif
 
-        @if(count($festival->types))
+            <div class="col-12">
+                <h2 class="festival__title">
+                    {{$festival->title}}
+                </h2>
 
-            <ul>
-                @foreach($festival->types as $type)
+                <div class="festival__date">
+                    {{ date('d M Y', strtotime($festival->date)) }}
+                </div>
 
-                    <li>
-                        <a href="/festivals/types/{{ $type->name }}">
-                            {{ $type->name }}
-                        </a>
-                    </li>
+                <div class="festival__time">
+                    {{ date('G:i', strtotime($festival->starttime)) }}
+                    -
+                    {{ date('h:i', strtotime($festival->endtime)) }}
+                </div>
+            </div>
 
-                @endforeach
+        </header>
 
-            </ul>
 
-        @endif
+        <div class="grid-12 container">
 
-        <p>
-            {{ $festival->description }}
-        </p>
+            <div class="col-8">
+                <div class="festival__main">
+                    @include('festivals.body')
 
-        <hr>
+                </div>
 
-        {{-- Show comments --}}
-        <div class="comments">
+            </div>
 
-            <ul class="list-group">
-
-                @foreach ($festival->comments as $comment)
-
-                    <li class="list-group-item">
-
-                        <strong>
-                            By {{ $comment->user->name }} on:
-                            {{ $comment->created_at->diffForHumans() }}: <br>
-                        </strong>
-
-                        {{ $comment->body }}
-
-                    </li>
-
-                @endforeach
-
-            </ul>
         </div>
 
-        <hr>
-
-        @if(Auth::check())
-            {{-- Create comment --}}
-            <div class="card">
-
-                <div class="card-block">
-
-                    <form class="" action="/festivals/{{ $festival->id }}/comments" method="POST">
-
-                        {{ csrf_field() }}
-
-                        <div class="form-group">
-                            <textarea name="body" class="form-control" placeholder="Type comment here" rows="8" cols="80" required></textarea>
-                        </div>
-
-                        <div class="form-group">
-                            <button type="submit" class="btn btn-primary">Add comment</button>
-                        </div>
-
-                    </form>
-
-                    @include('layouts.errors')
-
-                </div>
-
-            </div>
-
-        @else
-
-            <div class="card">
-
-                <div class="card-block">
-
-                    <p>
-                        Please log in to create comments!
-                    </p>
-
-                </div>
-
-            </div>
-
-        @endif
-
     </div>
+
+
 
 
 @endsection

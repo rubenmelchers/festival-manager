@@ -52,10 +52,17 @@
                             </div>
                         @endif
 
-                        <div class="col-12">
+                        <div class="col-6">
                             <a href="/users/{{ Auth::user()->id }}/update/festival/{{ $festival->id }}" class="btn btn-info">
                                 Update Festival
                             </a>
+                        </div>
+
+                        <div class="col-6">
+                            <a href="/festivals/{{$festival->id}}">
+                                Show festival
+                            </a>
+
                         </div>
 
 
@@ -73,8 +80,10 @@
         Your info:
         <br><br>
 
-        <img src="{{asset($user->avatar)}}" alt="{{$user->name}}'s profile picture" class="account-aside__avatar">
-        <br><br>
+        @if($user->avatar)
+            <img src="{{asset($user->avatar)}}" alt="{{$user->name}}'s profile picture" class="account-aside__avatar">
+            <br><br>
+        @endif
 
         Name: {{ $user->name }}
         <br>

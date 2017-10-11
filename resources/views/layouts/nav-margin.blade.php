@@ -1,4 +1,4 @@
-<nav class="navigation">
+<nav class="navigation navigation--margin">
     {{-- <div class="container"> --}}
     {{-- <div class="grid-12">
         <div class="col-12 navigation__wrapper"> --}}

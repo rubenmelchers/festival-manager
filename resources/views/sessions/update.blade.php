@@ -2,7 +2,7 @@
 
 @section('content')
 
-    <div class="col-12 blog-main">
+    <div class="col-12 blog-main account">
 
         {{-- @foreach($user as $user) --}}
 
@@ -18,6 +18,14 @@
 
                     <div class="form-group col-8 col_sm-12">
                         <label for="avatar">Avatar:</label><br>
+
+                        @if($user->avatar != "")
+                            <br>
+                            <img src="{{$user->avatar}}" alt="Your profile picture" class="account__avatar"><br><br>
+
+                            {{-- <label for="delete_avatar">Remove picture</label>
+                            <input type="checkbox"  name="delete_avatar" value="Delete"><br><br> --}}
+                        @endif
                         <input type="file" name="avatar" id="avatar" value="Upload profile picture">
 
                     </div>

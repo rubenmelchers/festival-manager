@@ -30,7 +30,7 @@
 
             @endif
 
-            <main class="main">
+            <main class="main main--master">
                 <div class="grid-12 container">
 
                         @yield('content')

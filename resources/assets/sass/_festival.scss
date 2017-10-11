@@ -1,0 +1,67 @@
+.festival {
+    position: relative;
+
+    &__header {
+        height: 80vh;
+        position: relative;
+    }
+
+    &__title,
+    &__date,
+    &__time {
+        position: relative;
+        z-index: 10;
+        color: $white;
+        text-align: center;
+    }
+
+    &__date,
+    &__time {
+        font-size: 2rem;
+    }
+
+    &__title {
+        padding-top: 10rem;
+        text-align: center;
+    }
+
+    &__date {
+        position: relative;
+        color: $white;
+    }
+
+    &__image {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 1;
+
+        background: {
+            size: cover !important;
+            position: bottom center !important;
+            repeat: no-repeat !important;
+            attachment: fixed !important;
+        }
+
+        &--nobackground {
+            background: $primary;
+        }
+
+        &::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 2;
+            background: rgba($black, .55);
+        }
+    }
+
+    &__main {
+        padding-top: 5rem;
+    }
+}

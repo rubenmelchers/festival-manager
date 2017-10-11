@@ -30,14 +30,14 @@
 
             @endif
 
-            <main class="main main--master">
-                <div class="grid-12 container">
+            <main class="main">
+                {{-- <div class="grid-12 container"> --}}
 
                         @yield('content')
 
-                        @include('layouts.sidebar')
+                        {{-- @include('layouts.sidebar') --}}
 
-                </div>
+                {{-- </div> --}}
             </main>
 
         </div>

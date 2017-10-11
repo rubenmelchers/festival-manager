@@ -8,6 +8,8 @@ Use App\Festival;
 Use App\User;
 Use App\Type;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
+
 
 // use Carbon\Carbon;
 
@@ -47,14 +49,32 @@ class FestivalsController extends Controller
         $this->validate(request(), [
             'title' => 'required|unique:festivals',
             'description' => 'required',
-            'location' => 'required'
+            'location' => 'required',
+            'date' => 'required',
+            'starttime' => 'required',
+            'endtime' => 'required'
         ]);
+
 
 
         auth()->user()->publish(
 
-            new Festival(request(['title', 'description', 'location']))
+            new Festival(request(['title', 'description', 'location', 'date', 'starttime', 'endtime']))
         );
+
+        if($request->hasFile('image')) {
+            $this->validate($request, [
+                'image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            ]);
+
+            $festival = Festival::where('title', request('title'))->first();
+
+
+            $image = $request->file('image');
+            $path = $image->store('public/images');
+
+            $festival->image = Storage::url($path);
+        }
 
 
         if(count($request->type)) {
@@ -66,7 +86,6 @@ class FestivalsController extends Controller
                 $festival->addType($festival->id, $type);
             }
         }
-
 
         session()->flash('message', 'You have created festival: "' . request('title') . '"');
 
@@ -103,6 +122,20 @@ class FestivalsController extends Controller
             $festival->location = $location;
         }
 
+        if($request->hasFile('image')) {
+            // return 'test';
+            $this->validate($request, [
+                'image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            ]);
+
+            $image = $request->file('image');
+            $path = $image->store('public/images');
+
+            $festival->image = Storage::url($path);
+
+
+        }
+
         if(count($request->type)) {
 
             //save the checked checkbox
@@ -120,6 +153,7 @@ class FestivalsController extends Controller
         } else {
             $festival->typesPivot()->detach();
         }
+
 
         $festival->save();
 
