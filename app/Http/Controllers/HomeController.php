@@ -14,6 +14,8 @@ class HomeController extends Controller
      *
      * @return void
      */
+
+    //constructor for authentication
     public function __construct()
     {
         $this->middleware('auth')->except(['welcome']);
@@ -24,9 +26,12 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+    //method for handling index call.
     public function index()
     {
-        
+
+        //return the home view
         return view('home');
     }
 

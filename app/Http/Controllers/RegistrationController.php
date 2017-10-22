@@ -9,14 +9,15 @@ use Illuminate\Support\Facades\Auth;
 class RegistrationController extends Controller
 {
 
-
+    //method for handling the create call
     public function create() {
 
-
+        //return the registration view
         return view('registration.create');
 
     }
 
+    //method for adding a user to the DB
     public function store() {
 
         //validate form
@@ -34,7 +35,7 @@ class RegistrationController extends Controller
             'password' => bcrypt(request('password'))
         ]);
 
-
+        //special redirect for admins (with flash message)
         if(Auth::check() && Auth::user()->isAdmin()) {
             session()->flash('message', 'User ' . request('name') . ' was succesfully created!');
 
@@ -44,11 +45,13 @@ class RegistrationController extends Controller
         //sign user in
         auth()->login($user);
 
+        //send mail to user
         \Mail::to($user)->send(new Welcome($user));
 
-
+        //create flash message for user
         session()->flash('message', 'Thank you for signing up!');
 
+        //redirect the user to home
         return redirect()->home();
     }
 }

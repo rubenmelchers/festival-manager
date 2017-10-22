@@ -15,6 +15,7 @@ class CommentsController extends Controller
             'body' => 'required'
         ]);
 
+        //call the addcomment on the corresponding festival
         $festival->addComment(request('body'), \Auth::user()->id);
 
         return back();

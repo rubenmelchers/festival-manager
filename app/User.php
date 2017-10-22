@@ -29,16 +29,19 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
+    //get the festivals created by the given user
     public function festivals() {
 
         return $this->hasMany(Festival::class);
     }
 
+    //create a festival by the given user
     public function publish(Festival $festival) {
 
         $this->festivals()->save($festival);
     }
 
+    //check if this user is an admin
     public function isAdmin() {
 
         if($this->role === 1) {
@@ -46,6 +49,5 @@ class User extends Authenticatable
         } else {
             return false;
         }
-        // return $this->role;
     }
 }
