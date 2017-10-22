@@ -1,6 +1,10 @@
 .festival {
     position: relative;
 
+    &--update {
+        margin-top: 10rem;
+    }
+
     &__header {
         height: 80vh;
         position: relative;
@@ -63,5 +67,66 @@
 
     &__main {
         padding-top: 5rem;
+    }
+
+    &__savebutton {
+        padding: 1rem;
+    }
+
+    &__checkboxwrapper {
+        // position: relative;
+        // background: #fcfff4;
+        // background: linear-gradient(to top, #fcfff4 0%, #dfe5d7 40%, #b3bead 100%);
+        // border-radius: 50px;
+        // box-shadow: inset 0px 1px 1px white, 0px 1px 3px rgba(0,0,0,0.5);
+
+    }
+
+    &__typelabel {
+        position: relative;
+        font-size: 1.5rem;
+    }
+
+    &__typecheckbox {
+        position: relative;
+        margin-left: 1rem;
+        width: 1rem;
+        height: 1rem;
+        z-index: 0;
+
+        &:after {
+            content: '';
+            color: $white;
+            position: absolute;
+            width: 1.5rem;
+            height: 1.5rem;
+            background: rgba(black, .95);
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            cursor: pointer;
+            border-radius: 25%;
+            box-shadow: inset 0px 1px 1px white, 0px 1px 3px rgba($black, .5);
+            z-index: 1;
+        }
+
+        &:before {
+            content: '';
+            position: absolute;
+            color: $primary;
+            z-index: 2;
+            top: 50%;
+            left: 50%;
+            font-size: 1.25rem;
+            transform: translate(-50%, -50%);
+            cursor: pointer;
+        }
+
+        &:checked {
+            &:before {
+                content: '\2713';
+            }
+        }
+
     }
 }

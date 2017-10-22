@@ -74,6 +74,7 @@ class FestivalsController extends Controller
             $path = $image->store('public/images');
 
             $festival->image = Storage::url($path);
+            $festival->save();
         }
 
 
