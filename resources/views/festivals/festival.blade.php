@@ -1,16 +1,26 @@
-<div class="blog-post">
+<div class="col-4 col_md-6 col_sm-12 festival-preview__wrapper">
+    <div class="festival-preview__article">
+        @if($festival->image !== null)
+            <a href="festivals/{{$festival->id}}" style="background-image: url({{$festival->image}})" class="festival-preview__link festival-preview__link--image">
+            @else
+                <a href="festivals/{{$festival->id}}" class="festival-preview__link">
+                @endif
 
-    <h2 class="blog-post-title">
-        <a href="festivals/{{ $festival->id }}">
-            {{ $festival->title }}
-        </a>
-    </h2>
+                <div class="festival-preview__title">
+                    {{ $festival->title }}
+                </div>
 
-    <p class="blog-post-meta">
-        {{ $festival->user->name }} on
-        {{ $festival->created_at->toFormattedDateString() }}
-    </p>
+                <div class="festival-preview__date">
+                    {{ date('d M Y', strtotime($festival->date)) }}
+                </div>
 
-    <p>{{ $festival->description }}</p>
+                <div class="festival-preview__description">
+                    <p>
+                        {{ $festival->description }}
+                    </p>
+                </div>
+
+            </a>
+    </div>
 
 </div>

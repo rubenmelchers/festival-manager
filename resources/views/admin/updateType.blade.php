@@ -18,7 +18,14 @@
                 </div>
 
                 <div class="form-group">
-                    <label for="active">Status (active):</label>
+
+                    @if($type->active === 1)
+                        <label for="active">Status (active):</label>
+                    @else
+
+                        <label for="active">Status (inactive):</label>
+                    @endif
+
                     <select class="form-control" name="active">
                         <option value="1">Active</option>
                         <option value="0">Inactive</option>
