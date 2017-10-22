@@ -44,7 +44,7 @@ class FestivalsController extends Controller
     public function create() {
 
         //create variable for the types
-        $types = Type::latest()->get();
+        $types = Type::where('active', 1)->get();
 
         //return the create view and send the types with it
         return view('festivals.create', compact('types'));

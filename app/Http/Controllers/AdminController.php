@@ -59,7 +59,7 @@ class AdminController extends Controller
         //create variables for the corresponding festival. Add the user and types to it.
         $festival = Festival::where('id', $id)->get();
         $users = User::get();
-        $types = Type::get();
+        $types = Type::where('active', 1)->get();
 
         // the view for updating the festival and send the festival, users and types with it.
         return view('admin.updateFestival', compact('festival', 'users', 'types'));

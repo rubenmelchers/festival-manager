@@ -201,7 +201,7 @@ class SessionController extends Controller
         }
 
         //get the types
-        $types = Type::get();
+        $types = Type::where('active', 1)->get();
 
         //return the update view with the festival and types info
         return view('festivals.update', compact('festival', 'types'));
