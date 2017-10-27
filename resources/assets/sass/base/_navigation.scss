@@ -12,6 +12,37 @@
 		duration: 1s;
 	}
 
+	&__search-form {
+		margin-top: .6rem;
+	}
+
+	&__search-wrapper {
+		display: flex;
+		margin-bottom: 0;
+	}
+
+	&__search-field {
+		width: 80%;
+	}
+
+	&__search-button {
+		width: 18%;
+		margin-left: 2%;
+		cursor: pointer;
+
+		background: {
+			image: url('../images/search.png');
+			size: contain;
+			repeat: no-repeat;
+			position: center;
+			color: $primary;
+		}
+
+		&:hover {
+			background-color: darken($primary, 10%);
+		}
+	}
+
 	&__wrapper {
 		padding: 0;
 	}

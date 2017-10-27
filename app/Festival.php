@@ -102,4 +102,22 @@ class Festival extends Model
         DB::table('festival_type')->where($whereArray)->delete();
     }
 
+    //method for the search functionality
+    public function scopeSearch($query, $keywords) {
+
+        if($keywords == '' || !$keywords) {
+            return;
+        }
+
+        $query->where(function ($query) use ($keywords) {
+            $query->where("title", "LIKE","%$keywords%")
+            ->orWhere("description", "LIKE", "%$keywords%")
+            ->orWhere("location", "LIKE", "%$keywords%")
+            ->orWhere("date", "LIKE", "%$keywords%")
+            ->orWhere("starttime", "LIKE", "%$keywords%")
+            ->orWhere("endtime", "LIKE", "%$keywords%");
+        });
+        return $query;
+    }
+
 }
