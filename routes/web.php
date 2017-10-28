@@ -67,4 +67,4 @@ Route::post('admin/update/type/{id}', 'TypesController@update');
 Route::get('/admin/delete/type/{id}', 'TypesController@delete');
 
 //search related
-Route::post('/search', 'SearchController@index');
+Route::post('/search', 'SearchController@show');

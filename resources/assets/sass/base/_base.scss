@@ -42,7 +42,8 @@ div {
     }
 }
 
-.alert.alert-success {
+.alert.alert-success,
+.alert.alert-danger {
     position: fixed;
     right: 5%;
     bottom: 5%;
@@ -58,6 +59,12 @@ div {
         }
     }
 }
+
+.alert.alert-danger {
+    padding: 6rem 4rem;
+}
+
+
 
 @import 'footer',
         'header',

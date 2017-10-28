@@ -12,16 +12,19 @@ class SearchController extends Controller
 {
     //
 
-    public function index(Request $request) {
+    public function show(Request $request) {
 
-        $keywords = $request->query;
-
+        $keywords = Request('query');
         $festivals = Festival::Search($keywords)->get();
+        $users = User::Search($keywords)->get();
+        $types = Type::Search($keywords)->get();
+        $comments = Comment::Search($keywords)->get();
 
-        if(count($festivals) < 0) {
-            session()->flash('message', 'No results were found');
+
+        if(count($festivals) <= 0 && count($users) <= 0) {
+            session()->flash('message-error', 'No results were found');
         }
 
-        return view('search.show', compact('festivals'));
+        return view('search.show', compact('festivals', 'users', 'types', 'comments'));
     }
 }

@@ -110,13 +110,14 @@ class Festival extends Model
         }
 
         $query->where(function ($query) use ($keywords) {
-            $query->where("title", "LIKE","%$keywords%")
-            ->orWhere("description", "LIKE", "%$keywords%")
-            ->orWhere("location", "LIKE", "%$keywords%")
-            ->orWhere("date", "LIKE", "%$keywords%")
-            ->orWhere("starttime", "LIKE", "%$keywords%")
-            ->orWhere("endtime", "LIKE", "%$keywords%");
+            $query->where('title', 'LIKE', '%' . $keywords . '%')
+            ->orWhere('description', 'LIKE',  '%' . $keywords . '%')
+            ->orWhere('location', 'LIKE',  '%' . $keywords . '%')
+            ->orWhere('date', 'LIKE',  '%' . $keywords . '%')
+            ->orWhere('starttime', 'LIKE',  '%' . $keywords . '%')
+            ->orWhere('endtime', 'LIKE',  '%' . $keywords . '%');
         });
+
         return $query;
     }
 

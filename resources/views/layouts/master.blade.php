@@ -21,14 +21,7 @@
 
         <div id="app">
             @include('layouts.nav')
-
-            @if($flash = session('message'))
-
-                <div class="alert alert-success" role="alert">
-                    {{ $flash }}
-                </div>
-
-            @endif
+            @include('layouts.messages')
 
             <main class="main main--master">
                 <div class="grid-12 container">
