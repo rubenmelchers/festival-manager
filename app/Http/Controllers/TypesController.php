@@ -108,4 +108,27 @@ class TypesController extends Controller
         return redirect('admin');
     }
 
+    //method for handling the active button on the admin parentElement
+    public function activeState($id) {
+        $type = Type::find($id);
+
+        //set flash message with the changed type name
+        session()->flash('message', 'You have updated the active state for type: ' . $type->name);
+
+        //if inactive, set to active
+        if($type->active == 0) {
+            $type->active = 1;
+
+        //if active, set to inactive
+        } else {
+            $type->active = 0;
+        }
+
+        //save to the db
+        $type->save();
+
+        //return to the adminpanel
+        return redirect('admin');
+    }
+
 }

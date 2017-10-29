@@ -178,7 +178,7 @@
 
 
 
-        <section class="admin__types-section">
+        <section class="admin__types-section" id="types">
             <h4>
                 Types
             </h4>
@@ -221,6 +221,18 @@
                             <td> {{ $type->updated_at->toFormattedDateString() }} </td>
 
                             <td><br>
+                                <form action="/admin/update/type/switch/{{$type->id}}" method="post" class="admin__activateform">
+                                    {{ csrf_field() }}
+                                    <label class="admin__activeswitch" for="activate">
+                                        @if($type->active == 1)
+                                            <input class="admin__inputbox" type="checkbox" name="activate" checked>
+                                        @else
+                                            <input class="admin__inputbox" type="checkbox" name="activate">
+                                        @endif
+                                        <span class="admin__slider admin__slider--round"></span>
+
+                                    </label>
+                                </form>
                                 <a href="/admin/update/type/{{$type->id}}" class="btn btn-primary">
                                     Update
                                 </a>

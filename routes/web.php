@@ -64,6 +64,7 @@ Route::get('/admin/add/type', 'TypesController@create');
 Route::post('/admin/add/type', 'TypesController@store');
 Route::get('admin/update/type/{id}', 'AdminController@updateType');
 Route::post('admin/update/type/{id}', 'TypesController@update');
+Route::post('admin/update/type/switch/{id}', 'TypesController@activeState');
 Route::get('/admin/delete/type/{id}', 'TypesController@delete');
 
 //search related

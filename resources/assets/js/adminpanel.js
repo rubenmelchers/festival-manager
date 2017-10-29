@@ -132,13 +132,19 @@
 
         let typeShowButton = typesSection.querySelector('.admin__showbutton'),
             typesTable = typesSection.querySelector('.admin__typestable'),
-            deleteButton = typesSection.querySelectorAll('.admin__deletetype');
+            deleteButton = typesSection.querySelectorAll('.admin__deletetype'),
+            switchButton = typesSection.querySelectorAll('.admin__activateform');
 
         typeShowButton.addEventListener('click', function() {
-
             typeShowButton.classList.toggle('hideTable');
             typesTable.classList.toggle('active');
         });
+
+        switchButton.forEach(function(el) {
+            el.addEventListener('click', function(e) {
+                el.submit();
+            })
+        })
 
         deleteButton.forEach(function(el) {
             el.addEventListener('click', function(e) {
