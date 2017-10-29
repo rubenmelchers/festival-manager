@@ -10,8 +10,17 @@
                         </span>
                     </a>
                 </li>
-
-                <li class="col-3 navigation__menu-item" data-push-left="off-4" class="navigation__menu-item">
+                <li class="col-4 navigation__menu-item navigation__menu-item--search">
+                    <form action="/search" method="POST" role="search" class="navigation__search-form">
+                        {{ csrf_field() }}
+                        <div class="form-group navigation__search-wrapper">
+                            <label for="query"></label>
+                            <input type="text" class="form-control navigation__search-field" name="query" placeholder="Search">
+                            <button type="submit" class="btn navigation__search-button"></button>
+                        </div>
+                    </form>
+                </li>
+                <li class="col-3 navigation__menu-item" class="navigation__menu-item">
                     <a href="/festivals" role="button" aria-expanded="false">
                         <span class="navigation__menu-content">
                             Festivals

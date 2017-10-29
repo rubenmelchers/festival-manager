@@ -46,6 +46,13 @@ class FestivalsController extends Controller
         //create variable for the types
         $types = Type::where('active', 1)->get();
 
+        $commentCount = Auth::user()->comments()->get();
+
+        if(count($commentCount) <= 4 && Auth::user()->isAdmin() != true) {
+            session()->flash('message-error', 'You need to create at least 4 comments before you can create a festival!');
+            return redirect('home');
+        }
+
         //return the create view and send the types with it
         return view('festivals.create', compact('types'));
     }

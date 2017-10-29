@@ -10,7 +10,7 @@
                         </span>
                     </a>
                 </li>
-                <li class="col-4">
+                <li class="col-4 navigation__menu-item navigation__menu-item--search">
                     <form action="/search" method="POST" role="search" class="navigation__search-form">
                         {{ csrf_field() }}
                         <div class="form-group navigation__search-wrapper">

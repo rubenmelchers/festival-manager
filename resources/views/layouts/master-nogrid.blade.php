@@ -21,14 +21,8 @@
 
         <div id="app">
             @include('layouts.nav')
+            @include('layouts.messages')
 
-            @if($flash = session('message'))
-
-                <div class="alert alert-success" role="alert">
-                    {{ $flash }}
-                </div>
-
-            @endif
 
             <main class="main main--master">
                 @yield('content')

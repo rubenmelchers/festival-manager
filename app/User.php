@@ -35,6 +35,11 @@ class User extends Authenticatable
         return $this->hasMany(Festival::class);
     }
 
+    public function comments() {
+
+        return $this->hasMany(Comment::class);
+    }
+
     //create a festival by the given user
     public function publish(Festival $festival) {
 
